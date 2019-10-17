@@ -10,20 +10,36 @@ import "./OpenOracleOnChainInterface.sol";
  * @author Compound Labs, Inc.
  */
 contract DelFiPriceWithOnchainData is OpenOracleView {
+
     /**
-     * @notice The event emitted when a price is written to storage
+     * @notice The list(array) of onChainSources contract addresses
      */
-    event Price(string symbol, uint64 price);
     address[] onChainSources;
+
     /**
      * @notice The mapping of medianized prices per symbol
      */
     mapping(string => uint64) public prices;
 
+    /**
+     * @notice The event emitted when a price is written to storage
+     */
+    event Price(string symbol, uint64 price);
+
+    /**
+     * @dev Specify the OpenOraclePriceData address, addresses for approved off-chain and on-chain data providers.
+     * @param data_ is the address for the OpenOraclePriceData contract
+     * @param sources_ is the list of authorized addresses to provide/sign off-chain data
+     * @param onChainSources_ is the list of authorized on-chain souces addresses 
+     */
     constructor(OpenOraclePriceData data_, address[] memory sources_,address[] memory onChainSources_) public OpenOracleView(data_, sources_) {
         onChainSources = onChainSources_;
     }
 
+    /**
+     * @notice Allows users to get median price data
+     * @param _symbol is the price symbol such as 'ETH/USD' etc...
+     */
     function getPrice(string memory _symbol) public returns(uint64){
         return prices[_symbol];
     }

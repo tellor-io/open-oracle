@@ -70,7 +70,6 @@ module.exports = {
     advanceTime,
     advanceBlock,
     advanceTimeAndBlock,
-
     expectThrow
 }
 

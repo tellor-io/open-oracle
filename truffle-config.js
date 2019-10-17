@@ -14,10 +14,10 @@ var HDWalletProvider = require("truffle-hdwallet-provider");
 //var nick = "the ureau";
 //public - 0xb204edaf0410675e00e6c8a7e448a9e8e2db69aa
 // private -fe5f52e7e0381448fe7d4a99e409b6da987b31362125ccb7bca781949cf61710
-var mnemonic = process.env.ETH_MNEMONIC;
-var accessToken = process.env.INFURA_ACCESS_TOKEN;
-var rinkAccessToken = process.env.rinkeby_infura;
-var Mainnet_alchemy = process.env.main_alchemy;
+// var mnemonic = process.env.ETH_MNEMONIC;
+// var accessToken = process.env.INFURA_ACCESS_TOKEN;
+// var rinkAccessToken = process.env.rinkeby_infura;
+// var Mainnet_alchemy = process.env.main_alchemy;
 
 
 
