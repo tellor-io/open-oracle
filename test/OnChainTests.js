@@ -33,6 +33,10 @@ const OpenOracleData = artifacts.require("./OpenOraclePriceData.sol")
 const OpenOracleOnChainImplementation = artifacts.require("./OpenOracleOnChainImplementation.sol"); 
 const OpenOracleOnChainInterface = artifacts.require("./OpenOracleOnChainInterface.sol");
 
+// const {
+//   encode,
+//   sign,
+// } = require('../sdk/javascript/src/reporter.ts');
 
 const sources = [
   '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf10',
@@ -59,6 +63,31 @@ const nonSources = [
   '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf28',
   '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf29',
 ].slice(0, 5).map(web3.eth.accounts.privateKeyToAccount);
+
+/* async function postPricesWithOnchain(timestamp, priceses, symbols, signers = sources) {
+    const messages = [], signatures = [];
+    priceses.forEach((prices, i) => {
+      const signed = helper.sign(helper.encode('prices', timestamp, prices.map(([symbol, price]) => [symbol, price])), signers[i].privateKey);
+      for (let {message, signature, signatory} of signed) {
+        expect(signatory).equal(signers[i].address);
+        messages.push(message);
+        signatures.push(signature);
+      }
+    });
+    return (messages, signatures, symbols);
+  }*/
+
+ async function postPricesWithOnchain(timestamp, prices, symbols, signers = sources) {
+    const messages = [], signatures = [];
+      const signed = helper.sign(helper.encode('prices', timestamp, prices.map(([symbol, price]) => [symbol, price])), signers[0].privateKey);
+      for (let {message, signature, signatory} of signed) {
+        expect(signatory).equal(signers[0].address);
+        messages.push(message);
+        signatures.push(signature);
+      }
+    return [messages, signatures, symbols];
+  }
+
 
 let testSymbol = 'ETH/USD'
 
@@ -100,7 +129,7 @@ contract('Open Oracle Tests', function(accounts) {
         assert(await testContract.startDateTime.call() != 0 , "Contract should be started and startDateTime should not be 0") ;
     });
 
-    it("Start and Settle Contract", async function(){
+    it("Start and Settle Contract with OnChain prices", async function(){
         await testContract.setViewContract(delfiPriceOnChain.address, delfiPrice.address)
         assert.equal(await testContract.viewAddress.call(),delfiPriceOnChain.address,"the onchain address should be correctly set in the Test Contract");
         console.log("setViewContract");
@@ -108,12 +137,17 @@ contract('Open Oracle Tests', function(accounts) {
         //Set Value on chain for today
         sdate = Date.now()/1000- (Date.now()/1000)%86400;//start date to initiate derivatives contract       
         console.log("sdate", sdate)
-        await onChainData.setValue(testSymbol, sdate, 2e11); //setValue for onChain oracle for start date
+        await onChainData.setValue(testSymbol, sdate, 290); //setValue for onChain oracle for start date
         let svalue = await onChainData.getValue(testSymbol, sdate)//view value
         console.log("value,times", web3.utils.hexToNumberString(svalue[0]), web3.utils.hexToNumberString(svalue[1]))
-        // assert(await web3.utils.hexToNumberString(svalue[0]) == 2e11 , "should equal 2e11")
+        // assert(await web3.utils.hexToNumberString(svalue[0]) == 2e11 , "should equal 290")
         // assert(await web3.utils.hexToNumberString(svalue[1]) == sdate , "should equal sdate") 
 
+        var forpostPrices = await postPricesWithOnchain(sdate, [['ETH/USD', 290]], ['ETH/USD']);
+
+        console.log('forpostPrices', forpostPrices)
+        await delfiPriceOnChain.postPrices(forpostPrices[0], forpostPrices[1], forpostPrices[2])
+        console.log('postPrices')
         //initiate test contract today
         await testContract.startContract(86400*2);//start derivatives contract with two day duration
         console.log("contract started");
@@ -121,7 +155,7 @@ contract('Open Oracle Tests', function(accounts) {
         svalue = await testContract.startValue.call()  //view start value 
         console.log(svalue)
         console.log("svalue", web3.utils.hexToNumberString(svalue))
-        // assert(await web3.utils.hexToNumberString(startValue) != 0, "should not be zero, shoudl be 2e11") 
+        // assert(await web3.utils.hexToNumberString(startValue) != 0, "should not be zero, shoudl be 290") 
 
 
         let _start = await testContract.startDateTime.call();

@@ -28,7 +28,7 @@ contract TestContract{
     /*Constructor*/
     /**
     * @dev set the symbol used by the test contract
-    * @param _symbol is 
+    * @param _symbol is the price symbol such as 'ETH/USD' etc...
     */
 	constructor(string memory _symbol) public {
 		symbol = _symbol;
@@ -50,7 +50,7 @@ contract TestContract{
     event print(string _desc, uint _val);
     /**
      * @dev creates a start(now) and end time(now + duration specified) for testing a contract start and end period
-     * @param _duration in seconds
+     * @param _duration of the contract in seconds
      */
 	function startContract(uint _duration) external {
 		startDateTime = now - (now % 1 days);//test failing so added rounding to the day...

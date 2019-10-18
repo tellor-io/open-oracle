@@ -8,12 +8,23 @@ pragma solidity ^0.5.0;
  */
 contract OpenOracleOnChainImplementation{
     
+    /**
+     * @notice The fundamental unit of storage for the on-chain source
+     */
     struct Datum {
         uint64 timestamp;
         uint64 value;
     }
 
+    /**
+     * @notice The mapping of symbol to current time available for it
+     */
     mapping(string => uint64) public currentTime;
+
+    /**
+     * @notice The mapping of symbol to timestamp to Datum struct containing
+     * the timestamp and value
+     */
     mapping(string => mapping(uint64 => Datum)) public priceData;
 
 	/*
