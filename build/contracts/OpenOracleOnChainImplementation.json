@@ -135,14 +135,14 @@
     "absolutePath": "/C/company/code/open-oracle/contracts/OpenOracleOnChainImplementation.sol",
     "exportedSymbols": {
       "OpenOracleOnChainImplementation": [
-        947
+        885
       ]
     },
-    "id": 948,
+    "id": 886,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 839,
+        "id": 777,
         "literals": [
           "solidity",
           "^",
@@ -158,23 +158,23 @@
         "contractKind": "contract",
         "documentation": "@title OpenOracleOnChainImplementation \r\n@notice This is an example contract of a base oracle solely intended for \r\ntesting purposes\r\n@author Tellor Inc.\r",
         "fullyImplemented": true,
-        "id": 947,
+        "id": 885,
         "linearizedBaseContracts": [
-          947
+          885
         ],
         "name": "OpenOracleOnChainImplementation",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "OpenOracleOnChainImplementation.Datum",
-            "id": 844,
+            "id": 782,
             "members": [
               {
                 "constant": false,
-                "id": 841,
+                "id": 779,
                 "name": "timestamp",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
+                "scope": 782,
                 "src": "371:16:4",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -183,7 +183,7 @@
                   "typeString": "uint64"
                 },
                 "typeName": {
-                  "id": 840,
+                  "id": 778,
                   "name": "uint64",
                   "nodeType": "ElementaryTypeName",
                   "src": "371:6:4",
@@ -197,10 +197,10 @@
               },
               {
                 "constant": false,
-                "id": 843,
+                "id": 781,
                 "name": "value",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
+                "scope": 782,
                 "src": "398:12:4",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -209,7 +209,7 @@
                   "typeString": "uint64"
                 },
                 "typeName": {
-                  "id": 842,
+                  "id": 780,
                   "name": "uint64",
                   "nodeType": "ElementaryTypeName",
                   "src": "398:6:4",
@@ -224,16 +224,16 @@
             ],
             "name": "Datum",
             "nodeType": "StructDefinition",
-            "scope": 947,
+            "scope": 885,
             "src": "347:71:4",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 848,
+            "id": 786,
             "name": "currentTime",
             "nodeType": "VariableDeclaration",
-            "scope": 947,
+            "scope": 885,
             "src": "515:44:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -242,9 +242,9 @@
               "typeString": "mapping(string => uint64)"
             },
             "typeName": {
-              "id": 847,
+              "id": 785,
               "keyType": {
-                "id": 845,
+                "id": 783,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "523:6:4",
@@ -260,7 +260,7 @@
                 "typeString": "mapping(string => uint64)"
               },
               "valueType": {
-                "id": 846,
+                "id": 784,
                 "name": "uint64",
                 "nodeType": "ElementaryTypeName",
                 "src": "533:6:4",
@@ -275,21 +275,21 @@
           },
           {
             "constant": false,
-            "id": 854,
+            "id": 792,
             "name": "priceData",
             "nodeType": "VariableDeclaration",
-            "scope": 947,
+            "scope": 885,
             "src": "696:60:4",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$844_storage_$_$",
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$782_storage_$_$",
               "typeString": "mapping(string => mapping(uint64 => struct OpenOracleOnChainImplementation.Datum))"
             },
             "typeName": {
-              "id": 853,
+              "id": 791,
               "keyType": {
-                "id": 849,
+                "id": 787,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "704:6:4",
@@ -301,13 +301,13 @@
               "nodeType": "Mapping",
               "src": "696:43:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$844_storage_$_$",
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$782_storage_$_$",
                 "typeString": "mapping(string => mapping(uint64 => struct OpenOracleOnChainImplementation.Datum))"
               },
               "valueType": {
-                "id": 852,
+                "id": 790,
                 "keyType": {
-                  "id": 850,
+                  "id": 788,
                   "name": "uint64",
                   "nodeType": "ElementaryTypeName",
                   "src": "722:6:4",
@@ -319,18 +319,18 @@
                 "nodeType": "Mapping",
                 "src": "714:24:4",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_mapping$_t_uint64_$_t_struct$_Datum_$844_storage_$",
+                  "typeIdentifier": "t_mapping$_t_uint64_$_t_struct$_Datum_$782_storage_$",
                   "typeString": "mapping(uint64 => struct OpenOracleOnChainImplementation.Datum)"
                 },
                 "valueType": {
                   "contractScope": null,
-                  "id": 851,
+                  "id": 789,
                   "name": "Datum",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 844,
+                  "referencedDeclaration": 782,
                   "src": "732:5:4",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Datum_$844_storage_ptr",
+                    "typeIdentifier": "t_struct$_Datum_$782_storage_ptr",
                     "typeString": "struct OpenOracleOnChainImplementation.Datum"
                   }
                 }
@@ -341,14 +341,14 @@
           },
           {
             "body": {
-              "id": 885,
+              "id": 823,
               "nodeType": "Block",
               "src": "1152:108:4",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 874,
+                    "id": 812,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -358,11 +358,11 @@
                       "components": [
                         {
                           "argumentTypes": null,
-                          "id": 865,
+                          "id": 803,
                           "name": "_value",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 861,
+                          "referencedDeclaration": 799,
                           "src": "1158:6:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint64",
@@ -371,11 +371,11 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 866,
+                          "id": 804,
                           "name": "_time",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 863,
+                          "referencedDeclaration": 801,
                           "src": "1165:5:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint64",
@@ -383,7 +383,7 @@
                           }
                         }
                       ],
-                      "id": 867,
+                      "id": 805,
                       "isConstant": false,
                       "isInlineArray": false,
                       "isLValue": true,
@@ -403,11 +403,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 869,
+                          "id": 807,
                           "name": "_symbol",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 856,
+                          "referencedDeclaration": 794,
                           "src": "1183:7:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
@@ -418,25 +418,25 @@
                           "argumentTypes": null,
                           "baseExpression": {
                             "argumentTypes": null,
-                            "id": 870,
+                            "id": 808,
                             "name": "currentTime",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 848,
+                            "referencedDeclaration": 786,
                             "src": "1191:11:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_mapping$_t_string_memory_$_t_uint64_$",
                               "typeString": "mapping(string memory => uint64)"
                             }
                           },
-                          "id": 872,
+                          "id": 810,
                           "indexExpression": {
                             "argumentTypes": null,
-                            "id": 871,
+                            "id": 809,
                             "name": "_symbol",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 856,
+                            "referencedDeclaration": 794,
                             "src": "1203:7:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_string_memory_ptr",
@@ -466,18 +466,18 @@
                             "typeString": "uint64"
                           }
                         ],
-                        "id": 868,
+                        "id": 806,
                         "name": "getValue",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 946,
+                        "referencedDeclaration": 884,
                         "src": "1174:8:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_view$_t_string_memory_ptr_$_t_uint64_$returns$_t_uint64_$_t_uint64_$",
                           "typeString": "function (string memory,uint64) view returns (uint64,uint64)"
                         }
                       },
-                      "id": 873,
+                      "id": 811,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -497,7 +497,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 875,
+                  "id": 813,
                   "nodeType": "ExpressionStatement",
                   "src": "1157:55:4"
                 },
@@ -508,18 +508,18 @@
                       "typeIdentifier": "t_uint64",
                       "typeString": "uint64"
                     },
-                    "id": 878,
+                    "id": 816,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 876,
+                      "id": 814,
                       "name": "_time",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 863,
+                      "referencedDeclaration": 801,
                       "src": "1220:5:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint64",
@@ -531,7 +531,7 @@
                     "rightExpression": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 877,
+                      "id": 815,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -553,29 +553,29 @@
                     }
                   },
                   "falseBody": null,
-                  "id": 884,
+                  "id": 822,
                   "nodeType": "IfStatement",
                   "src": "1217:39:4",
                   "trueBody": {
-                    "id": 883,
+                    "id": 821,
                     "nodeType": "Block",
                     "src": "1230:26:4",
                     "statements": [
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 881,
+                          "id": 819,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftHandSide": {
                             "argumentTypes": null,
-                            "id": 879,
+                            "id": 817,
                             "name": "_didGet",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 859,
+                            "referencedDeclaration": 797,
                             "src": "1236:7:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bool",
@@ -587,7 +587,7 @@
                           "rightHandSide": {
                             "argumentTypes": null,
                             "hexValue": "74727565",
-                            "id": 880,
+                            "id": 818,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -608,7 +608,7 @@
                             "typeString": "bool"
                           }
                         },
-                        "id": 882,
+                        "id": 820,
                         "nodeType": "ExpressionStatement",
                         "src": "1236:14:4"
                       }
@@ -618,22 +618,22 @@
               ]
             },
             "documentation": null,
-            "id": 886,
+            "id": 824,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getCurrentValue",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 857,
+              "id": 795,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 856,
+                  "id": 794,
                   "name": "_symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 886,
+                  "scope": 824,
                   "src": "1074:21:4",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -642,7 +642,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 855,
+                    "id": 793,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1074:6:4",
@@ -658,15 +658,15 @@
               "src": "1073:23:4"
             },
             "returnParameters": {
-              "id": 864,
+              "id": 802,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 859,
+                  "id": 797,
                   "name": "_didGet",
                   "nodeType": "VariableDeclaration",
-                  "scope": 886,
+                  "scope": 824,
                   "src": "1112:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -675,7 +675,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 858,
+                    "id": 796,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1112:4:4",
@@ -689,10 +689,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 861,
+                  "id": 799,
                   "name": "_value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 886,
+                  "scope": 824,
                   "src": "1125:13:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -701,7 +701,7 @@
                     "typeString": "uint64"
                   },
                   "typeName": {
-                    "id": 860,
+                    "id": 798,
                     "name": "uint64",
                     "nodeType": "ElementaryTypeName",
                     "src": "1125:6:4",
@@ -715,10 +715,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 863,
+                  "id": 801,
                   "name": "_time",
                   "nodeType": "VariableDeclaration",
-                  "scope": 886,
+                  "scope": 824,
                   "src": "1139:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -727,7 +727,7 @@
                     "typeString": "uint64"
                   },
                   "typeName": {
-                    "id": 862,
+                    "id": 800,
                     "name": "uint64",
                     "nodeType": "ElementaryTypeName",
                     "src": "1139:6:4",
@@ -742,7 +742,7 @@
               ],
               "src": "1111:41:4"
             },
-            "scope": 947,
+            "scope": 885,
             "src": "1049:211:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -750,14 +750,14 @@
           },
           {
             "body": {
-              "id": 919,
+              "id": 857,
               "nodeType": "Block",
               "src": "1614:210:4",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 904,
+                    "id": 842,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -768,25 +768,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 895,
+                          "id": 833,
                           "name": "priceData",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 854,
+                          "referencedDeclaration": 792,
                           "src": "1620:9:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$844_storage_$_$",
+                            "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$782_storage_$_$",
                             "typeString": "mapping(string memory => mapping(uint64 => struct OpenOracleOnChainImplementation.Datum storage ref))"
                           }
                         },
-                        "id": 898,
+                        "id": 836,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 896,
+                          "id": 834,
                           "name": "_symbol",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 888,
+                          "referencedDeclaration": 826,
                           "src": "1630:7:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_calldata_ptr",
@@ -800,18 +800,18 @@
                         "nodeType": "IndexAccess",
                         "src": "1620:18:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint64_$_t_struct$_Datum_$844_storage_$",
+                          "typeIdentifier": "t_mapping$_t_uint64_$_t_struct$_Datum_$782_storage_$",
                           "typeString": "mapping(uint64 => struct OpenOracleOnChainImplementation.Datum storage ref)"
                         }
                       },
-                      "id": 899,
+                      "id": 837,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 897,
+                        "id": 835,
                         "name": "_time",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 890,
+                        "referencedDeclaration": 828,
                         "src": "1639:5:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint64",
@@ -825,7 +825,7 @@
                       "nodeType": "IndexAccess",
                       "src": "1620:25:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Datum_$844_storage",
+                        "typeIdentifier": "t_struct$_Datum_$782_storage",
                         "typeString": "struct OpenOracleOnChainImplementation.Datum storage ref"
                       }
                     },
@@ -836,11 +836,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 901,
+                          "id": 839,
                           "name": "_value",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 892,
+                          "referencedDeclaration": 830,
                           "src": "1668:6:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint64",
@@ -849,11 +849,11 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 902,
+                          "id": 840,
                           "name": "_time",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 890,
+                          "referencedDeclaration": 828,
                           "src": "1692:5:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint64",
@@ -872,18 +872,18 @@
                             "typeString": "uint64"
                           }
                         ],
-                        "id": 900,
+                        "id": 838,
                         "name": "Datum",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 844,
+                        "referencedDeclaration": 782,
                         "src": "1648:5:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_Datum_$844_storage_ptr_$",
+                          "typeIdentifier": "t_type$_t_struct$_Datum_$782_storage_ptr_$",
                           "typeString": "type(struct OpenOracleOnChainImplementation.Datum storage pointer)"
                         }
                       },
-                      "id": 903,
+                      "id": 841,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -896,17 +896,17 @@
                       "nodeType": "FunctionCall",
                       "src": "1648:65:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Datum_$844_memory",
+                        "typeIdentifier": "t_struct$_Datum_$782_memory",
                         "typeString": "struct OpenOracleOnChainImplementation.Datum memory"
                       }
                     },
                     "src": "1620:93:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Datum_$844_storage",
+                      "typeIdentifier": "t_struct$_Datum_$782_storage",
                       "typeString": "struct OpenOracleOnChainImplementation.Datum storage ref"
                     }
                   },
-                  "id": 905,
+                  "id": 843,
                   "nodeType": "ExpressionStatement",
                   "src": "1620:93:4"
                 },
@@ -917,18 +917,18 @@
                       "typeIdentifier": "t_uint64",
                       "typeString": "uint64"
                     },
-                    "id": 910,
+                    "id": 848,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 906,
+                      "id": 844,
                       "name": "_time",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 890,
+                      "referencedDeclaration": 828,
                       "src": "1731:5:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint64",
@@ -941,25 +941,25 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 907,
+                        "id": 845,
                         "name": "currentTime",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 848,
+                        "referencedDeclaration": 786,
                         "src": "1739:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_string_memory_$_t_uint64_$",
                           "typeString": "mapping(string memory => uint64)"
                         }
                       },
-                      "id": 909,
+                      "id": 847,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 908,
+                        "id": 846,
                         "name": "_symbol",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 888,
+                        "referencedDeclaration": 826,
                         "src": "1751:7:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_calldata_ptr",
@@ -984,18 +984,18 @@
                     }
                   },
                   "falseBody": null,
-                  "id": 918,
+                  "id": 856,
                   "nodeType": "IfStatement",
                   "src": "1728:92:4",
                   "trueBody": {
-                    "id": 917,
+                    "id": 855,
                     "nodeType": "Block",
                     "src": "1760:60:4",
                     "statements": [
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 915,
+                          "id": 853,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1004,25 +1004,25 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 911,
+                              "id": 849,
                               "name": "currentTime",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 848,
+                              "referencedDeclaration": 786,
                               "src": "1776:11:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_string_memory_$_t_uint64_$",
                                 "typeString": "mapping(string memory => uint64)"
                               }
                             },
-                            "id": 913,
+                            "id": 851,
                             "indexExpression": {
                               "argumentTypes": null,
-                              "id": 912,
+                              "id": 850,
                               "name": "_symbol",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 888,
+                              "referencedDeclaration": 826,
                               "src": "1788:7:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_string_calldata_ptr",
@@ -1044,11 +1044,11 @@
                           "operator": "=",
                           "rightHandSide": {
                             "argumentTypes": null,
-                            "id": 914,
+                            "id": 852,
                             "name": "_time",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 890,
+                            "referencedDeclaration": 828,
                             "src": "1799:5:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint64",
@@ -1061,7 +1061,7 @@
                             "typeString": "uint64"
                           }
                         },
-                        "id": 916,
+                        "id": 854,
                         "nodeType": "ExpressionStatement",
                         "src": "1776:28:4"
                       }
@@ -1071,22 +1071,22 @@
               ]
             },
             "documentation": null,
-            "id": 920,
+            "id": 858,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setValue",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 893,
+              "id": 831,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 888,
+                  "id": 826,
                   "name": "_symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 920,
+                  "scope": 858,
                   "src": "1552:23:4",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -1095,7 +1095,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 887,
+                    "id": 825,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1552:6:4",
@@ -1109,10 +1109,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 890,
+                  "id": 828,
                   "name": "_time",
                   "nodeType": "VariableDeclaration",
-                  "scope": 920,
+                  "scope": 858,
                   "src": "1577:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1121,7 +1121,7 @@
                     "typeString": "uint64"
                   },
                   "typeName": {
-                    "id": 889,
+                    "id": 827,
                     "name": "uint64",
                     "nodeType": "ElementaryTypeName",
                     "src": "1577:6:4",
@@ -1135,10 +1135,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 892,
+                  "id": 830,
                   "name": "_value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 920,
+                  "scope": 858,
                   "src": "1591:13:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1147,7 +1147,7 @@
                     "typeString": "uint64"
                   },
                   "typeName": {
-                    "id": 891,
+                    "id": 829,
                     "name": "uint64",
                     "nodeType": "ElementaryTypeName",
                     "src": "1591:6:4",
@@ -1163,12 +1163,12 @@
               "src": "1551:54:4"
             },
             "returnParameters": {
-              "id": 894,
+              "id": 832,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1614:0:4"
             },
-            "scope": 947,
+            "scope": 885,
             "src": "1534:290:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1176,37 +1176,37 @@
           },
           {
             "body": {
-              "id": 945,
+              "id": 883,
               "nodeType": "Block",
               "src": "2209:109:4",
               "statements": [
                 {
                   "assignments": [
-                    932
+                    870
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 932,
+                      "id": 870,
                       "name": "thisVal",
                       "nodeType": "VariableDeclaration",
-                      "scope": 945,
+                      "scope": 883,
                       "src": "2214:21:4",
                       "stateVariable": false,
                       "storageLocation": "storage",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Datum_$844_storage_ptr",
+                        "typeIdentifier": "t_struct$_Datum_$782_storage_ptr",
                         "typeString": "struct OpenOracleOnChainImplementation.Datum"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 931,
+                        "id": 869,
                         "name": "Datum",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 844,
+                        "referencedDeclaration": 782,
                         "src": "2214:5:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Datum_$844_storage_ptr",
+                          "typeIdentifier": "t_struct$_Datum_$782_storage_ptr",
                           "typeString": "struct OpenOracleOnChainImplementation.Datum"
                         }
                       },
@@ -1214,32 +1214,32 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 938,
+                  "id": 876,
                   "initialValue": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 933,
+                        "id": 871,
                         "name": "priceData",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 854,
+                        "referencedDeclaration": 792,
                         "src": "2238:9:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$844_storage_$_$",
+                          "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$782_storage_$_$",
                           "typeString": "mapping(string memory => mapping(uint64 => struct OpenOracleOnChainImplementation.Datum storage ref))"
                         }
                       },
-                      "id": 935,
+                      "id": 873,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 934,
+                        "id": 872,
                         "name": "_symbol",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 922,
+                        "referencedDeclaration": 860,
                         "src": "2248:7:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -1253,18 +1253,18 @@
                       "nodeType": "IndexAccess",
                       "src": "2238:18:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint64_$_t_struct$_Datum_$844_storage_$",
+                        "typeIdentifier": "t_mapping$_t_uint64_$_t_struct$_Datum_$782_storage_$",
                         "typeString": "mapping(uint64 => struct OpenOracleOnChainImplementation.Datum storage ref)"
                       }
                     },
-                    "id": 937,
+                    "id": 875,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 936,
+                      "id": 874,
                       "name": "_timestamp",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 924,
+                      "referencedDeclaration": 862,
                       "src": "2257:10:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint64",
@@ -1278,7 +1278,7 @@
                     "nodeType": "IndexAccess",
                     "src": "2238:30:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Datum_$844_storage",
+                      "typeIdentifier": "t_struct$_Datum_$782_storage",
                       "typeString": "struct OpenOracleOnChainImplementation.Datum storage ref"
                     }
                   },
@@ -1293,25 +1293,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 939,
+                          "id": 877,
                           "name": "thisVal",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 932,
+                          "referencedDeclaration": 870,
                           "src": "2281:7:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Datum_$844_storage_ptr",
+                            "typeIdentifier": "t_struct$_Datum_$782_storage_ptr",
                             "typeString": "struct OpenOracleOnChainImplementation.Datum storage pointer"
                           }
                         },
-                        "id": 940,
+                        "id": 878,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "value",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 843,
+                        "referencedDeclaration": 781,
                         "src": "2281:13:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint64",
@@ -1322,25 +1322,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 941,
+                          "id": 879,
                           "name": "thisVal",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 932,
+                          "referencedDeclaration": 870,
                           "src": "2295:7:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Datum_$844_storage_ptr",
+                            "typeIdentifier": "t_struct$_Datum_$782_storage_ptr",
                             "typeString": "struct OpenOracleOnChainImplementation.Datum storage pointer"
                           }
                         },
-                        "id": 942,
+                        "id": 880,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "timestamp",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 841,
+                        "referencedDeclaration": 779,
                         "src": "2295:17:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint64",
@@ -1348,7 +1348,7 @@
                         }
                       }
                     ],
-                    "id": 943,
+                    "id": 881,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
@@ -1361,30 +1361,30 @@
                       "typeString": "tuple(uint64,uint64)"
                     }
                   },
-                  "functionReturnParameters": 930,
-                  "id": 944,
+                  "functionReturnParameters": 868,
+                  "id": 882,
                   "nodeType": "Return",
                   "src": "2273:40:4"
                 }
               ]
             },
             "documentation": null,
-            "id": 946,
+            "id": 884,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getValue",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 925,
+              "id": 863,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 922,
+                  "id": 860,
                   "name": "_symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 946,
+                  "scope": 884,
                   "src": "2134:21:4",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1393,7 +1393,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 921,
+                    "id": 859,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "2134:6:4",
@@ -1407,10 +1407,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 924,
+                  "id": 862,
                   "name": "_timestamp",
                   "nodeType": "VariableDeclaration",
-                  "scope": 946,
+                  "scope": 884,
                   "src": "2157:17:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1419,7 +1419,7 @@
                     "typeString": "uint64"
                   },
                   "typeName": {
-                    "id": 923,
+                    "id": 861,
                     "name": "uint64",
                     "nodeType": "ElementaryTypeName",
                     "src": "2157:6:4",
@@ -1435,15 +1435,15 @@
               "src": "2133:42:4"
             },
             "returnParameters": {
-              "id": 930,
+              "id": 868,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 927,
+                  "id": 865,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 946,
+                  "scope": 884,
                   "src": "2195:6:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1452,7 +1452,7 @@
                     "typeString": "uint64"
                   },
                   "typeName": {
-                    "id": 926,
+                    "id": 864,
                     "name": "uint64",
                     "nodeType": "ElementaryTypeName",
                     "src": "2195:6:4",
@@ -1466,10 +1466,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 929,
+                  "id": 867,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 946,
+                  "scope": 884,
                   "src": "2202:6:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1478,7 +1478,7 @@
                     "typeString": "uint64"
                   },
                   "typeName": {
-                    "id": 928,
+                    "id": 866,
                     "name": "uint64",
                     "nodeType": "ElementaryTypeName",
                     "src": "2202:6:4",
@@ -1493,14 +1493,14 @@
               ],
               "src": "2194:15:4"
             },
-            "scope": 947,
+            "scope": 885,
             "src": "2116:202:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 948,
+        "scope": 886,
         "src": "204:2117:4"
       }
     ],
@@ -1510,14 +1510,14 @@
     "absolutePath": "/C/company/code/open-oracle/contracts/OpenOracleOnChainImplementation.sol",
     "exportedSymbols": {
       "OpenOracleOnChainImplementation": [
-        947
+        885
       ]
     },
-    "id": 948,
+    "id": 886,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 839,
+        "id": 777,
         "literals": [
           "solidity",
           "^",
@@ -1533,23 +1533,23 @@
         "contractKind": "contract",
         "documentation": "@title OpenOracleOnChainImplementation \r\n@notice This is an example contract of a base oracle solely intended for \r\ntesting purposes\r\n@author Tellor Inc.\r",
         "fullyImplemented": true,
-        "id": 947,
+        "id": 885,
         "linearizedBaseContracts": [
-          947
+          885
         ],
         "name": "OpenOracleOnChainImplementation",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "canonicalName": "OpenOracleOnChainImplementation.Datum",
-            "id": 844,
+            "id": 782,
             "members": [
               {
                 "constant": false,
-                "id": 841,
+                "id": 779,
                 "name": "timestamp",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
+                "scope": 782,
                 "src": "371:16:4",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -1558,7 +1558,7 @@
                   "typeString": "uint64"
                 },
                 "typeName": {
-                  "id": 840,
+                  "id": 778,
                   "name": "uint64",
                   "nodeType": "ElementaryTypeName",
                   "src": "371:6:4",
@@ -1572,10 +1572,10 @@
               },
               {
                 "constant": false,
-                "id": 843,
+                "id": 781,
                 "name": "value",
                 "nodeType": "VariableDeclaration",
-                "scope": 844,
+                "scope": 782,
                 "src": "398:12:4",
                 "stateVariable": false,
                 "storageLocation": "default",
@@ -1584,7 +1584,7 @@
                   "typeString": "uint64"
                 },
                 "typeName": {
-                  "id": 842,
+                  "id": 780,
                   "name": "uint64",
                   "nodeType": "ElementaryTypeName",
                   "src": "398:6:4",
@@ -1599,16 +1599,16 @@
             ],
             "name": "Datum",
             "nodeType": "StructDefinition",
-            "scope": 947,
+            "scope": 885,
             "src": "347:71:4",
             "visibility": "public"
           },
           {
             "constant": false,
-            "id": 848,
+            "id": 786,
             "name": "currentTime",
             "nodeType": "VariableDeclaration",
-            "scope": 947,
+            "scope": 885,
             "src": "515:44:4",
             "stateVariable": true,
             "storageLocation": "default",
@@ -1617,9 +1617,9 @@
               "typeString": "mapping(string => uint64)"
             },
             "typeName": {
-              "id": 847,
+              "id": 785,
               "keyType": {
-                "id": 845,
+                "id": 783,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "523:6:4",
@@ -1635,7 +1635,7 @@
                 "typeString": "mapping(string => uint64)"
               },
               "valueType": {
-                "id": 846,
+                "id": 784,
                 "name": "uint64",
                 "nodeType": "ElementaryTypeName",
                 "src": "533:6:4",
@@ -1650,21 +1650,21 @@
           },
           {
             "constant": false,
-            "id": 854,
+            "id": 792,
             "name": "priceData",
             "nodeType": "VariableDeclaration",
-            "scope": 947,
+            "scope": 885,
             "src": "696:60:4",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$844_storage_$_$",
+              "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$782_storage_$_$",
               "typeString": "mapping(string => mapping(uint64 => struct OpenOracleOnChainImplementation.Datum))"
             },
             "typeName": {
-              "id": 853,
+              "id": 791,
               "keyType": {
-                "id": 849,
+                "id": 787,
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "704:6:4",
@@ -1676,13 +1676,13 @@
               "nodeType": "Mapping",
               "src": "696:43:4",
               "typeDescriptions": {
-                "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$844_storage_$_$",
+                "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$782_storage_$_$",
                 "typeString": "mapping(string => mapping(uint64 => struct OpenOracleOnChainImplementation.Datum))"
               },
               "valueType": {
-                "id": 852,
+                "id": 790,
                 "keyType": {
-                  "id": 850,
+                  "id": 788,
                   "name": "uint64",
                   "nodeType": "ElementaryTypeName",
                   "src": "722:6:4",
@@ -1694,18 +1694,18 @@
                 "nodeType": "Mapping",
                 "src": "714:24:4",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_mapping$_t_uint64_$_t_struct$_Datum_$844_storage_$",
+                  "typeIdentifier": "t_mapping$_t_uint64_$_t_struct$_Datum_$782_storage_$",
                   "typeString": "mapping(uint64 => struct OpenOracleOnChainImplementation.Datum)"
                 },
                 "valueType": {
                   "contractScope": null,
-                  "id": 851,
+                  "id": 789,
                   "name": "Datum",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 844,
+                  "referencedDeclaration": 782,
                   "src": "732:5:4",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_struct$_Datum_$844_storage_ptr",
+                    "typeIdentifier": "t_struct$_Datum_$782_storage_ptr",
                     "typeString": "struct OpenOracleOnChainImplementation.Datum"
                   }
                 }
@@ -1716,14 +1716,14 @@
           },
           {
             "body": {
-              "id": 885,
+              "id": 823,
               "nodeType": "Block",
               "src": "1152:108:4",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 874,
+                    "id": 812,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1733,11 +1733,11 @@
                       "components": [
                         {
                           "argumentTypes": null,
-                          "id": 865,
+                          "id": 803,
                           "name": "_value",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 861,
+                          "referencedDeclaration": 799,
                           "src": "1158:6:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint64",
@@ -1746,11 +1746,11 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 866,
+                          "id": 804,
                           "name": "_time",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 863,
+                          "referencedDeclaration": 801,
                           "src": "1165:5:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint64",
@@ -1758,7 +1758,7 @@
                           }
                         }
                       ],
-                      "id": 867,
+                      "id": 805,
                       "isConstant": false,
                       "isInlineArray": false,
                       "isLValue": true,
@@ -1778,11 +1778,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 869,
+                          "id": 807,
                           "name": "_symbol",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 856,
+                          "referencedDeclaration": 794,
                           "src": "1183:7:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
@@ -1793,25 +1793,25 @@
                           "argumentTypes": null,
                           "baseExpression": {
                             "argumentTypes": null,
-                            "id": 870,
+                            "id": 808,
                             "name": "currentTime",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 848,
+                            "referencedDeclaration": 786,
                             "src": "1191:11:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_mapping$_t_string_memory_$_t_uint64_$",
                               "typeString": "mapping(string memory => uint64)"
                             }
                           },
-                          "id": 872,
+                          "id": 810,
                           "indexExpression": {
                             "argumentTypes": null,
-                            "id": 871,
+                            "id": 809,
                             "name": "_symbol",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 856,
+                            "referencedDeclaration": 794,
                             "src": "1203:7:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_string_memory_ptr",
@@ -1841,18 +1841,18 @@
                             "typeString": "uint64"
                           }
                         ],
-                        "id": 868,
+                        "id": 806,
                         "name": "getValue",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 946,
+                        "referencedDeclaration": 884,
                         "src": "1174:8:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_internal_view$_t_string_memory_ptr_$_t_uint64_$returns$_t_uint64_$_t_uint64_$",
                           "typeString": "function (string memory,uint64) view returns (uint64,uint64)"
                         }
                       },
-                      "id": 873,
+                      "id": 811,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1872,7 +1872,7 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 875,
+                  "id": 813,
                   "nodeType": "ExpressionStatement",
                   "src": "1157:55:4"
                 },
@@ -1883,18 +1883,18 @@
                       "typeIdentifier": "t_uint64",
                       "typeString": "uint64"
                     },
-                    "id": 878,
+                    "id": 816,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 876,
+                      "id": 814,
                       "name": "_time",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 863,
+                      "referencedDeclaration": 801,
                       "src": "1220:5:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint64",
@@ -1906,7 +1906,7 @@
                     "rightExpression": {
                       "argumentTypes": null,
                       "hexValue": "30",
-                      "id": 877,
+                      "id": 815,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1928,29 +1928,29 @@
                     }
                   },
                   "falseBody": null,
-                  "id": 884,
+                  "id": 822,
                   "nodeType": "IfStatement",
                   "src": "1217:39:4",
                   "trueBody": {
-                    "id": 883,
+                    "id": 821,
                     "nodeType": "Block",
                     "src": "1230:26:4",
                     "statements": [
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 881,
+                          "id": 819,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftHandSide": {
                             "argumentTypes": null,
-                            "id": 879,
+                            "id": 817,
                             "name": "_didGet",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 859,
+                            "referencedDeclaration": 797,
                             "src": "1236:7:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bool",
@@ -1962,7 +1962,7 @@
                           "rightHandSide": {
                             "argumentTypes": null,
                             "hexValue": "74727565",
-                            "id": 880,
+                            "id": 818,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -1983,7 +1983,7 @@
                             "typeString": "bool"
                           }
                         },
-                        "id": 882,
+                        "id": 820,
                         "nodeType": "ExpressionStatement",
                         "src": "1236:14:4"
                       }
@@ -1993,22 +1993,22 @@
               ]
             },
             "documentation": null,
-            "id": 886,
+            "id": 824,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getCurrentValue",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 857,
+              "id": 795,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 856,
+                  "id": 794,
                   "name": "_symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 886,
+                  "scope": 824,
                   "src": "1074:21:4",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2017,7 +2017,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 855,
+                    "id": 793,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1074:6:4",
@@ -2033,15 +2033,15 @@
               "src": "1073:23:4"
             },
             "returnParameters": {
-              "id": 864,
+              "id": 802,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 859,
+                  "id": 797,
                   "name": "_didGet",
                   "nodeType": "VariableDeclaration",
-                  "scope": 886,
+                  "scope": 824,
                   "src": "1112:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2050,7 +2050,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 858,
+                    "id": 796,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1112:4:4",
@@ -2064,10 +2064,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 861,
+                  "id": 799,
                   "name": "_value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 886,
+                  "scope": 824,
                   "src": "1125:13:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2076,7 +2076,7 @@
                     "typeString": "uint64"
                   },
                   "typeName": {
-                    "id": 860,
+                    "id": 798,
                     "name": "uint64",
                     "nodeType": "ElementaryTypeName",
                     "src": "1125:6:4",
@@ -2090,10 +2090,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 863,
+                  "id": 801,
                   "name": "_time",
                   "nodeType": "VariableDeclaration",
-                  "scope": 886,
+                  "scope": 824,
                   "src": "1139:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2102,7 +2102,7 @@
                     "typeString": "uint64"
                   },
                   "typeName": {
-                    "id": 862,
+                    "id": 800,
                     "name": "uint64",
                     "nodeType": "ElementaryTypeName",
                     "src": "1139:6:4",
@@ -2117,7 +2117,7 @@
               ],
               "src": "1111:41:4"
             },
-            "scope": 947,
+            "scope": 885,
             "src": "1049:211:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2125,14 +2125,14 @@
           },
           {
             "body": {
-              "id": 919,
+              "id": 857,
               "nodeType": "Block",
               "src": "1614:210:4",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 904,
+                    "id": 842,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2143,25 +2143,25 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
-                          "id": 895,
+                          "id": 833,
                           "name": "priceData",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 854,
+                          "referencedDeclaration": 792,
                           "src": "1620:9:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$844_storage_$_$",
+                            "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$782_storage_$_$",
                             "typeString": "mapping(string memory => mapping(uint64 => struct OpenOracleOnChainImplementation.Datum storage ref))"
                           }
                         },
-                        "id": 898,
+                        "id": 836,
                         "indexExpression": {
                           "argumentTypes": null,
-                          "id": 896,
+                          "id": 834,
                           "name": "_symbol",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 888,
+                          "referencedDeclaration": 826,
                           "src": "1630:7:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_calldata_ptr",
@@ -2175,18 +2175,18 @@
                         "nodeType": "IndexAccess",
                         "src": "1620:18:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_uint64_$_t_struct$_Datum_$844_storage_$",
+                          "typeIdentifier": "t_mapping$_t_uint64_$_t_struct$_Datum_$782_storage_$",
                           "typeString": "mapping(uint64 => struct OpenOracleOnChainImplementation.Datum storage ref)"
                         }
                       },
-                      "id": 899,
+                      "id": 837,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 897,
+                        "id": 835,
                         "name": "_time",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 890,
+                        "referencedDeclaration": 828,
                         "src": "1639:5:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint64",
@@ -2200,7 +2200,7 @@
                       "nodeType": "IndexAccess",
                       "src": "1620:25:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Datum_$844_storage",
+                        "typeIdentifier": "t_struct$_Datum_$782_storage",
                         "typeString": "struct OpenOracleOnChainImplementation.Datum storage ref"
                       }
                     },
@@ -2211,11 +2211,11 @@
                       "arguments": [
                         {
                           "argumentTypes": null,
-                          "id": 901,
+                          "id": 839,
                           "name": "_value",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 892,
+                          "referencedDeclaration": 830,
                           "src": "1668:6:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint64",
@@ -2224,11 +2224,11 @@
                         },
                         {
                           "argumentTypes": null,
-                          "id": 902,
+                          "id": 840,
                           "name": "_time",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 890,
+                          "referencedDeclaration": 828,
                           "src": "1692:5:4",
                           "typeDescriptions": {
                             "typeIdentifier": "t_uint64",
@@ -2247,18 +2247,18 @@
                             "typeString": "uint64"
                           }
                         ],
-                        "id": 900,
+                        "id": 838,
                         "name": "Datum",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 844,
+                        "referencedDeclaration": 782,
                         "src": "1648:5:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_struct$_Datum_$844_storage_ptr_$",
+                          "typeIdentifier": "t_type$_t_struct$_Datum_$782_storage_ptr_$",
                           "typeString": "type(struct OpenOracleOnChainImplementation.Datum storage pointer)"
                         }
                       },
-                      "id": 903,
+                      "id": 841,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -2271,17 +2271,17 @@
                       "nodeType": "FunctionCall",
                       "src": "1648:65:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Datum_$844_memory",
+                        "typeIdentifier": "t_struct$_Datum_$782_memory",
                         "typeString": "struct OpenOracleOnChainImplementation.Datum memory"
                       }
                     },
                     "src": "1620:93:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Datum_$844_storage",
+                      "typeIdentifier": "t_struct$_Datum_$782_storage",
                       "typeString": "struct OpenOracleOnChainImplementation.Datum storage ref"
                     }
                   },
-                  "id": 905,
+                  "id": 843,
                   "nodeType": "ExpressionStatement",
                   "src": "1620:93:4"
                 },
@@ -2292,18 +2292,18 @@
                       "typeIdentifier": "t_uint64",
                       "typeString": "uint64"
                     },
-                    "id": 910,
+                    "id": 848,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "argumentTypes": null,
-                      "id": 906,
+                      "id": 844,
                       "name": "_time",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 890,
+                      "referencedDeclaration": 828,
                       "src": "1731:5:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint64",
@@ -2316,25 +2316,25 @@
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 907,
+                        "id": 845,
                         "name": "currentTime",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 848,
+                        "referencedDeclaration": 786,
                         "src": "1739:11:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_mapping$_t_string_memory_$_t_uint64_$",
                           "typeString": "mapping(string memory => uint64)"
                         }
                       },
-                      "id": 909,
+                      "id": 847,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 908,
+                        "id": 846,
                         "name": "_symbol",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 888,
+                        "referencedDeclaration": 826,
                         "src": "1751:7:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_calldata_ptr",
@@ -2359,18 +2359,18 @@
                     }
                   },
                   "falseBody": null,
-                  "id": 918,
+                  "id": 856,
                   "nodeType": "IfStatement",
                   "src": "1728:92:4",
                   "trueBody": {
-                    "id": 917,
+                    "id": 855,
                     "nodeType": "Block",
                     "src": "1760:60:4",
                     "statements": [
                       {
                         "expression": {
                           "argumentTypes": null,
-                          "id": 915,
+                          "id": 853,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -2379,25 +2379,25 @@
                             "argumentTypes": null,
                             "baseExpression": {
                               "argumentTypes": null,
-                              "id": 911,
+                              "id": 849,
                               "name": "currentTime",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 848,
+                              "referencedDeclaration": 786,
                               "src": "1776:11:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_mapping$_t_string_memory_$_t_uint64_$",
                                 "typeString": "mapping(string memory => uint64)"
                               }
                             },
-                            "id": 913,
+                            "id": 851,
                             "indexExpression": {
                               "argumentTypes": null,
-                              "id": 912,
+                              "id": 850,
                               "name": "_symbol",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 888,
+                              "referencedDeclaration": 826,
                               "src": "1788:7:4",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_string_calldata_ptr",
@@ -2419,11 +2419,11 @@
                           "operator": "=",
                           "rightHandSide": {
                             "argumentTypes": null,
-                            "id": 914,
+                            "id": 852,
                             "name": "_time",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 890,
+                            "referencedDeclaration": 828,
                             "src": "1799:5:4",
                             "typeDescriptions": {
                               "typeIdentifier": "t_uint64",
@@ -2436,7 +2436,7 @@
                             "typeString": "uint64"
                           }
                         },
-                        "id": 916,
+                        "id": 854,
                         "nodeType": "ExpressionStatement",
                         "src": "1776:28:4"
                       }
@@ -2446,22 +2446,22 @@
               ]
             },
             "documentation": null,
-            "id": 920,
+            "id": 858,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "setValue",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 893,
+              "id": 831,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 888,
+                  "id": 826,
                   "name": "_symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 920,
+                  "scope": 858,
                   "src": "1552:23:4",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -2470,7 +2470,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 887,
+                    "id": 825,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "1552:6:4",
@@ -2484,10 +2484,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 890,
+                  "id": 828,
                   "name": "_time",
                   "nodeType": "VariableDeclaration",
-                  "scope": 920,
+                  "scope": 858,
                   "src": "1577:12:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2496,7 +2496,7 @@
                     "typeString": "uint64"
                   },
                   "typeName": {
-                    "id": 889,
+                    "id": 827,
                     "name": "uint64",
                     "nodeType": "ElementaryTypeName",
                     "src": "1577:6:4",
@@ -2510,10 +2510,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 892,
+                  "id": 830,
                   "name": "_value",
                   "nodeType": "VariableDeclaration",
-                  "scope": 920,
+                  "scope": 858,
                   "src": "1591:13:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2522,7 +2522,7 @@
                     "typeString": "uint64"
                   },
                   "typeName": {
-                    "id": 891,
+                    "id": 829,
                     "name": "uint64",
                     "nodeType": "ElementaryTypeName",
                     "src": "1591:6:4",
@@ -2538,12 +2538,12 @@
               "src": "1551:54:4"
             },
             "returnParameters": {
-              "id": 894,
+              "id": 832,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1614:0:4"
             },
-            "scope": 947,
+            "scope": 885,
             "src": "1534:290:4",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2551,37 +2551,37 @@
           },
           {
             "body": {
-              "id": 945,
+              "id": 883,
               "nodeType": "Block",
               "src": "2209:109:4",
               "statements": [
                 {
                   "assignments": [
-                    932
+                    870
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 932,
+                      "id": 870,
                       "name": "thisVal",
                       "nodeType": "VariableDeclaration",
-                      "scope": 945,
+                      "scope": 883,
                       "src": "2214:21:4",
                       "stateVariable": false,
                       "storageLocation": "storage",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_struct$_Datum_$844_storage_ptr",
+                        "typeIdentifier": "t_struct$_Datum_$782_storage_ptr",
                         "typeString": "struct OpenOracleOnChainImplementation.Datum"
                       },
                       "typeName": {
                         "contractScope": null,
-                        "id": 931,
+                        "id": 869,
                         "name": "Datum",
                         "nodeType": "UserDefinedTypeName",
-                        "referencedDeclaration": 844,
+                        "referencedDeclaration": 782,
                         "src": "2214:5:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_struct$_Datum_$844_storage_ptr",
+                          "typeIdentifier": "t_struct$_Datum_$782_storage_ptr",
                           "typeString": "struct OpenOracleOnChainImplementation.Datum"
                         }
                       },
@@ -2589,32 +2589,32 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 938,
+                  "id": 876,
                   "initialValue": {
                     "argumentTypes": null,
                     "baseExpression": {
                       "argumentTypes": null,
                       "baseExpression": {
                         "argumentTypes": null,
-                        "id": 933,
+                        "id": 871,
                         "name": "priceData",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 854,
+                        "referencedDeclaration": 792,
                         "src": "2238:9:4",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$844_storage_$_$",
+                          "typeIdentifier": "t_mapping$_t_string_memory_$_t_mapping$_t_uint64_$_t_struct$_Datum_$782_storage_$_$",
                           "typeString": "mapping(string memory => mapping(uint64 => struct OpenOracleOnChainImplementation.Datum storage ref))"
                         }
                       },
-                      "id": 935,
+                      "id": 873,
                       "indexExpression": {
                         "argumentTypes": null,
-                        "id": 934,
+                        "id": 872,
                         "name": "_symbol",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 922,
+                        "referencedDeclaration": 860,
                         "src": "2248:7:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -2628,18 +2628,18 @@
                       "nodeType": "IndexAccess",
                       "src": "2238:18:4",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_mapping$_t_uint64_$_t_struct$_Datum_$844_storage_$",
+                        "typeIdentifier": "t_mapping$_t_uint64_$_t_struct$_Datum_$782_storage_$",
                         "typeString": "mapping(uint64 => struct OpenOracleOnChainImplementation.Datum storage ref)"
                       }
                     },
-                    "id": 937,
+                    "id": 875,
                     "indexExpression": {
                       "argumentTypes": null,
-                      "id": 936,
+                      "id": 874,
                       "name": "_timestamp",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 924,
+                      "referencedDeclaration": 862,
                       "src": "2257:10:4",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint64",
@@ -2653,7 +2653,7 @@
                     "nodeType": "IndexAccess",
                     "src": "2238:30:4",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_struct$_Datum_$844_storage",
+                      "typeIdentifier": "t_struct$_Datum_$782_storage",
                       "typeString": "struct OpenOracleOnChainImplementation.Datum storage ref"
                     }
                   },
@@ -2668,25 +2668,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 939,
+                          "id": 877,
                           "name": "thisVal",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 932,
+                          "referencedDeclaration": 870,
                           "src": "2281:7:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Datum_$844_storage_ptr",
+                            "typeIdentifier": "t_struct$_Datum_$782_storage_ptr",
                             "typeString": "struct OpenOracleOnChainImplementation.Datum storage pointer"
                           }
                         },
-                        "id": 940,
+                        "id": 878,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "value",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 843,
+                        "referencedDeclaration": 781,
                         "src": "2281:13:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint64",
@@ -2697,25 +2697,25 @@
                         "argumentTypes": null,
                         "expression": {
                           "argumentTypes": null,
-                          "id": 941,
+                          "id": 879,
                           "name": "thisVal",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 932,
+                          "referencedDeclaration": 870,
                           "src": "2295:7:4",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_struct$_Datum_$844_storage_ptr",
+                            "typeIdentifier": "t_struct$_Datum_$782_storage_ptr",
                             "typeString": "struct OpenOracleOnChainImplementation.Datum storage pointer"
                           }
                         },
-                        "id": 942,
+                        "id": 880,
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "timestamp",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 841,
+                        "referencedDeclaration": 779,
                         "src": "2295:17:4",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint64",
@@ -2723,7 +2723,7 @@
                         }
                       }
                     ],
-                    "id": 943,
+                    "id": 881,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
@@ -2736,30 +2736,30 @@
                       "typeString": "tuple(uint64,uint64)"
                     }
                   },
-                  "functionReturnParameters": 930,
-                  "id": 944,
+                  "functionReturnParameters": 868,
+                  "id": 882,
                   "nodeType": "Return",
                   "src": "2273:40:4"
                 }
               ]
             },
             "documentation": null,
-            "id": 946,
+            "id": 884,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
             "name": "getValue",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 925,
+              "id": 863,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 922,
+                  "id": 860,
                   "name": "_symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 946,
+                  "scope": 884,
                   "src": "2134:21:4",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -2768,7 +2768,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 921,
+                    "id": 859,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "2134:6:4",
@@ -2782,10 +2782,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 924,
+                  "id": 862,
                   "name": "_timestamp",
                   "nodeType": "VariableDeclaration",
-                  "scope": 946,
+                  "scope": 884,
                   "src": "2157:17:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2794,7 +2794,7 @@
                     "typeString": "uint64"
                   },
                   "typeName": {
-                    "id": 923,
+                    "id": 861,
                     "name": "uint64",
                     "nodeType": "ElementaryTypeName",
                     "src": "2157:6:4",
@@ -2810,15 +2810,15 @@
               "src": "2133:42:4"
             },
             "returnParameters": {
-              "id": 930,
+              "id": 868,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 927,
+                  "id": 865,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 946,
+                  "scope": 884,
                   "src": "2195:6:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2827,7 +2827,7 @@
                     "typeString": "uint64"
                   },
                   "typeName": {
-                    "id": 926,
+                    "id": 864,
                     "name": "uint64",
                     "nodeType": "ElementaryTypeName",
                     "src": "2195:6:4",
@@ -2841,10 +2841,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 929,
+                  "id": 867,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 946,
+                  "scope": 884,
                   "src": "2202:6:4",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2853,7 +2853,7 @@
                     "typeString": "uint64"
                   },
                   "typeName": {
-                    "id": 928,
+                    "id": 866,
                     "name": "uint64",
                     "nodeType": "ElementaryTypeName",
                     "src": "2202:6:4",
@@ -2868,14 +2868,14 @@
               ],
               "src": "2194:15:4"
             },
-            "scope": 947,
+            "scope": 885,
             "src": "2116:202:4",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 948,
+        "scope": 886,
         "src": "204:2117:4"
       }
     ],
@@ -2887,7 +2887,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-21T15:07:02.567Z",
+  "updatedAt": "2019-10-21T17:52:01.582Z",
   "devdoc": {
     "author": "Tellor Inc.\r",
     "methods": {},

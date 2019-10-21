@@ -134,32 +134,24 @@ contract('Open Oracle Tests', function(accounts) {
     it("Initiate a test contract", async function(){
         await testContract.setViewContract(delfiPriceOnChain.address, delfiPrice.address)
         assert.equal(await testContract.viewAddress.call(),delfiPriceOnChain.address,"the onchain address should be correctly set in the Test Contract");
-        console.log("setViewContract");
+       // console.log("setViewContract");
         sdate = Date.now()/1000- (Date.now()/1000)%86400;       
-        console.log("sdate", sdate)
+        //console.log("sdate", sdate)
         await onChainData.setValue(testSymbol, sdate, 200);
-        console.log("start value set");
+        //console.log("start value set");
         await testContract.startContract(86400);
-        console.log("contract started");
+        //console.log("contract started");
         let _start = await testContract.startDateTime.call();
-        console.log(web3.utils.hexToNumberString(_start))
         assert(await testContract.startDateTime.call() != 0 , "Contract should be started and startDateTime should not be 0") ;
     });
 
     it("Start and Settle Contract with OnChain prices", async function(){
         await testContract.setViewContract(delfiPriceOnChain.address, delfiPrice.address)
         assert.equal(await testContract.viewAddress.call(),delfiPriceOnChain.address,"the onchain address should be correctly set in the Test Contract");
-        console.log("setViewContract");
-
         //Set Value on chain for today
         sdate = Date.now()/1000- (Date.now()/1000)%86400;//start date to initiate derivatives contract       
-        console.log("sdate", sdate)
         await onChainData.setValue(testSymbol, sdate, 290); //setValue for onChain oracle for start date
         let svalue = await onChainData.getValue(testSymbol, sdate)//view value
-        console.log("value,times", web3.utils.hexToNumberString(svalue[0]), web3.utils.hexToNumberString(svalue[1]))
-        // assert(await web3.utils.hexToNumberString(svalue[0]) == 2e11 , "should equal 290")
-        // assert(await web3.utils.hexToNumberString(svalue[1]) == sdate , "should equal sdate") 
-
         var forpostPrices = await postPricesWithOnchain(sdate, [
           [
             ['ETH/USD', 290]
@@ -169,22 +161,13 @@ contract('Open Oracle Tests', function(accounts) {
           [['ETH/USD', 293]],
           [['ETH/USD', 294]]
           ], ['ETH/USD']);
-
-        console.log('forpostPrices', forpostPrices)
         await delfiPriceOnChain.postPrices(forpostPrices[0], forpostPrices[1], forpostPrices[2])
-        console.log('postPrices')
         //initiate test contract today
         await testContract.startContract(86400*2);//start derivatives contract with two day duration
-        console.log("contract started");
         //check start value is not zero
         svalue = await testContract.startValue.call()  //view start value 
-        console.log(svalue)
-        console.log("svalue", web3.utils.hexToNumberString(svalue))
         // assert(await web3.utils.hexToNumberString(startValue) != 0, "should not be zero, shoudl be 290") 
-
-
         let _start = await testContract.startDateTime.call();
-        console.log("startDateTime", web3.utils.hexToNumberString(_start))
         // assert(await testContract.startDateTime.call() != 0 , "Contract should be started") ;
         _enddate = await helper.advanceTime(86400 * 3);
         // console.log('_enddate', _enddate);
@@ -192,7 +175,6 @@ contract('Open Oracle Tests', function(accounts) {
         // edate = sdate + (86400*3);       
         // console.log("edate", edate)
         let _end = await testContract.endDateTime.call();
-        console.log("endDateTime", web3.utils.hexToNumberString(_end))
         await onChainData.setValue(testSymbol, _end, 3e11);
 
         var forpostPrices = await postPricesWithOnchain(sdate + (86400*3), [
@@ -208,7 +190,6 @@ contract('Open Oracle Tests', function(accounts) {
         await delfiPriceOnChain.postPrices(forpostPrices[0], forpostPrices[1], forpostPrices[2])
         await testContract.settleContracts();
         evalue = await testContract.endValue.call()
-        console.log("evalue", web3.utils.hexToNumberString(evalue))
         // console.log("contract settled");
         assert(evalue-svalue > 0, "endValue should be greater than start value")
         assert.equal(await testContract.contractEnded.call(), true, "True if contract was settled");

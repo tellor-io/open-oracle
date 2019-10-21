@@ -40,14 +40,14 @@
     "absolutePath": "/C/company/code/open-oracle/contracts/OpenOracleOnChainInterface.sol",
     "exportedSymbols": {
       "OpenOracleOnChainInterface": [
-        961
+        899
       ]
     },
-    "id": 962,
+    "id": 900,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 949,
+        "id": 887,
         "literals": [
           "solidity",
           "^",
@@ -63,9 +63,9 @@
         "contractKind": "interface",
         "documentation": "@notice This contract is the interface between the OpenOracle and onChain prices.\r\n Examples of onchain price:\r\nETH/USD - DAI/ETH price on DEXes\r\nBTC/USD - WBTC/DAI on DEX\r\nOnchain oracles:\r\n\tTellor\r\n\tChainlink\r\n\tZap\r\n\tMaker DAO ETH/USD price\r",
         "fullyImplemented": false,
-        "id": 961,
+        "id": 899,
         "linearizedBaseContracts": [
-          961
+          899
         ],
         "name": "OpenOracleOnChainInterface",
         "nodeType": "ContractDefinition",
@@ -73,22 +73,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 960,
+            "id": 898,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCurrentValue",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 952,
+              "id": 890,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 951,
+                  "id": 889,
                   "name": "_symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 960,
+                  "scope": 898,
                   "src": "377:23:5",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -97,7 +97,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 950,
+                    "id": 888,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "377:6:5",
@@ -113,15 +113,15 @@
               "src": "376:25:5"
             },
             "returnParameters": {
-              "id": 959,
+              "id": 897,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 954,
+                  "id": 892,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 960,
+                  "scope": 898,
                   "src": "419:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -130,7 +130,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 953,
+                    "id": 891,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "419:4:5",
@@ -144,10 +144,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 956,
+                  "id": 894,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 960,
+                  "scope": 898,
                   "src": "424:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -156,7 +156,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 955,
+                    "id": 893,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "424:4:5",
@@ -170,10 +170,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 958,
+                  "id": 896,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 960,
+                  "scope": 898,
                   "src": "429:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -182,7 +182,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 957,
+                    "id": 895,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "429:4:5",
@@ -197,14 +197,14 @@
               ],
               "src": "418:16:5"
             },
-            "scope": 961,
+            "scope": 899,
             "src": "352:83:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 962,
+        "scope": 900,
         "src": "312:163:5"
       }
     ],
@@ -214,14 +214,14 @@
     "absolutePath": "/C/company/code/open-oracle/contracts/OpenOracleOnChainInterface.sol",
     "exportedSymbols": {
       "OpenOracleOnChainInterface": [
-        961
+        899
       ]
     },
-    "id": 962,
+    "id": 900,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 949,
+        "id": 887,
         "literals": [
           "solidity",
           "^",
@@ -237,9 +237,9 @@
         "contractKind": "interface",
         "documentation": "@notice This contract is the interface between the OpenOracle and onChain prices.\r\n Examples of onchain price:\r\nETH/USD - DAI/ETH price on DEXes\r\nBTC/USD - WBTC/DAI on DEX\r\nOnchain oracles:\r\n\tTellor\r\n\tChainlink\r\n\tZap\r\n\tMaker DAO ETH/USD price\r",
         "fullyImplemented": false,
-        "id": 961,
+        "id": 899,
         "linearizedBaseContracts": [
-          961
+          899
         ],
         "name": "OpenOracleOnChainInterface",
         "nodeType": "ContractDefinition",
@@ -247,22 +247,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 960,
+            "id": 898,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCurrentValue",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 952,
+              "id": 890,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 951,
+                  "id": 889,
                   "name": "_symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 960,
+                  "scope": 898,
                   "src": "377:23:5",
                   "stateVariable": false,
                   "storageLocation": "calldata",
@@ -271,7 +271,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 950,
+                    "id": 888,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "377:6:5",
@@ -287,15 +287,15 @@
               "src": "376:25:5"
             },
             "returnParameters": {
-              "id": 959,
+              "id": 897,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 954,
+                  "id": 892,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 960,
+                  "scope": 898,
                   "src": "419:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -304,7 +304,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 953,
+                    "id": 891,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "419:4:5",
@@ -318,10 +318,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 956,
+                  "id": 894,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 960,
+                  "scope": 898,
                   "src": "424:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -330,7 +330,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 955,
+                    "id": 893,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "424:4:5",
@@ -344,10 +344,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 958,
+                  "id": 896,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 960,
+                  "scope": 898,
                   "src": "429:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -356,7 +356,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 957,
+                    "id": 895,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "429:4:5",
@@ -371,14 +371,14 @@
               ],
               "src": "418:16:5"
             },
-            "scope": 961,
+            "scope": 899,
             "src": "352:83:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 962,
+        "scope": 900,
         "src": "312:163:5"
       }
     ],
@@ -390,7 +390,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-21T15:07:02.569Z",
+  "updatedAt": "2019-10-21T17:52:01.584Z",
   "devdoc": {
     "methods": {}
   },

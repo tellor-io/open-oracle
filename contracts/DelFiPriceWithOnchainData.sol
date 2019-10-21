@@ -68,8 +68,6 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
             emit Price(symbol, price);
         }
     }
-    event Print(string _s, uint _n, bool _d);
-
     /**
      * @notice Calculates the median price over any set of sources
      * @param symbol The symbol to calculate the median price of
@@ -92,25 +90,17 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
         uint tookCount = 0;
         for(uint i=0; i< onChainSources.length; i++){
             (_didGet,_retrievedValue,_timestampRetrieved) = OpenOracleOnChainInterface(address(onChainSources[i])).getCurrentValue(symbol);   
-                  emit Print("onchain1",_retrievedValue, _didGet); 
-                  emit Print("time",_timestampRetrieved, true);
-                  emit Print("now",now, true);
             if(_didGet){//or a different threshold ( && _timestampRetrieved > now - 1 days .. or none like Compound)
                 result[tookCount] = uint64(_retrievedValue);
                 tookCount++;
-                emit Print("onchain",_retrievedValue, _didGet); 
             }         
         }
-        emit Print("after",N, true); 
-        emit Print("after2",tookCount, true); 
         uint64[] memory allPrices = new uint64[](N + tookCount);
         for (uint i=0; i < (N + tookCount); i++) {
             if(i<N){
-                emit Print("oC",postedPrices[i],true);
                 allPrices[i] = postedPrices[i];
             }
             else{
-                emit Print("offChain",result[i-N],true);
                 allPrices[i] = result[i-N];
             }
         }
