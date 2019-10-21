@@ -77,17 +77,34 @@ const nonSources = [
     return (messages, signatures, symbols);
   }*/
 
- async function postPricesWithOnchain(timestamp, prices, symbols, signers = sources) {
+ // async function postPricesWithOnchain(timestamp, priceses, symbols, signers = sources) {
+ //  i = 0;
+ //    const messages = [], signatures = [];
+ //     priceses.forEach((prices, i) => { for (let {message, signature, signatory} of signed) {
+
+ //      const signed = helper.sign(helper.encode('prices', timestamp, prices.map(([symbol, price]) => [symbol, price])), signers[i].privateKey);
+ //      for (let {message, signature, signatory} of signed) {
+ //        console.log(i);
+ //        i++
+ //        expect(signatory).equal(signers[0].address);
+ //        messages.push(message);
+ //        signatures.push(signature);
+ //      }
+ //    });
+ //    return [messages, signatures, symbols];
+ //  }
+  async function postPricesWithOnchain(timestamp, priceses, symbols, signers = sources) {
     const messages = [], signatures = [];
-      const signed = helper.sign(helper.encode('prices', timestamp, prices.map(([symbol, price]) => [symbol, price])), signers[0].privateKey);
+    priceses.forEach((prices, i) => {
+      const signed = helper.sign(helper.encode('prices', timestamp, prices.map(([symbol, price]) => [symbol, price])), signers[i].privateKey);
       for (let {message, signature, signatory} of signed) {
-        expect(signatory).equal(signers[0].address);
+        expect(signatory).equal(signers[i].address);
         messages.push(message);
         signatures.push(signature);
       }
+    });
     return [messages, signatures, symbols];
   }
-
 
 let testSymbol = 'ETH/USD'
 
@@ -143,7 +160,15 @@ contract('Open Oracle Tests', function(accounts) {
         // assert(await web3.utils.hexToNumberString(svalue[0]) == 2e11 , "should equal 290")
         // assert(await web3.utils.hexToNumberString(svalue[1]) == sdate , "should equal sdate") 
 
-        var forpostPrices = await postPricesWithOnchain(sdate, [['ETH/USD', 290]], ['ETH/USD']);
+        var forpostPrices = await postPricesWithOnchain(sdate, [
+          [
+            ['ETH/USD', 290]
+          ],
+          [['ETH/USD', 291]],
+          [['ETH/USD', 292]],
+          [['ETH/USD', 293]],
+          [['ETH/USD', 294]]
+          ], ['ETH/USD']);
 
         console.log('forpostPrices', forpostPrices)
         await delfiPriceOnChain.postPrices(forpostPrices[0], forpostPrices[1], forpostPrices[2])
@@ -170,12 +195,23 @@ contract('Open Oracle Tests', function(accounts) {
         console.log("endDateTime", web3.utils.hexToNumberString(_end))
         await onChainData.setValue(testSymbol, _end, 3e11);
 
+        var forpostPrices = await postPricesWithOnchain(sdate + (86400*3), [
+          [
+            ['ETH/USD', 1290]
+          ],
+          [['ETH/USD', 1291]],
+          [['ETH/USD', 1292]],
+          [['ETH/USD', 1293]],
+          [['ETH/USD', 1294]]
+          ], ['ETH/USD']);
 
+        await delfiPriceOnChain.postPrices(forpostPrices[0], forpostPrices[1], forpostPrices[2])
         await testContract.settleContracts();
         evalue = await testContract.endValue.call()
         console.log("evalue", web3.utils.hexToNumberString(evalue))
         // console.log("contract settled");
-        // assert.equal(await testContract.contractEnded.call(), true, "True if contract was settled");
+        assert(evalue-svalue > 0, "endValue should be greater than start value")
+        assert.equal(await testContract.contractEnded.call(), true, "True if contract was settled");
 
     });
 

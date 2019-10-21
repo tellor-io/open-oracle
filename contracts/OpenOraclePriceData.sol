@@ -13,7 +13,7 @@ contract OpenOraclePriceData is OpenOracleData {
      * @notice The event emitted when a source writes to its storage
      */
     event Write(address indexed source, string key, uint64 timestamp, uint64 value);
-
+    event Print(string _s, uint _n);
     /**
      * @notice The fundamental unit of storage for a reporter source
      */
@@ -40,6 +40,7 @@ contract OpenOraclePriceData is OpenOracleData {
 
         // Decode the message and check the kind
         (string memory kind, uint64 timestamp, string memory key, uint64 value) = abi.decode(message, (string, uint64, string, uint64));
+        emit Print("offchain price",value);
         require(keccak256(abi.encodePacked(kind)) == keccak256(abi.encodePacked("prices")), "Kind of data must be 'prices'");
 
         // Only update if newer than stored, according to source
