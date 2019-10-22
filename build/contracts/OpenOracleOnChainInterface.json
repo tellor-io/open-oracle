@@ -29,25 +29,25 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"_symbol\",\"type\":\"string\"}],\"name\":\"getCurrentValue\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/company/code/open-oracle/contracts/OpenOracleOnChainInterface.sol\":\"OpenOracleOnChainInterface\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/company/code/open-oracle/contracts/OpenOracleOnChainInterface.sol\":{\"keccak256\":\"0xedc028afbadb4dd2955fc171f570c1144b35c30244e912ed6685be714a53709b\",\"urls\":[\"bzzr://87a3833a33528daa8c387f9610eb72ba3d7808eded8bee8a2f4de1d14cb5f90e\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.8+commit.23d335f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"_symbol\",\"type\":\"string\"}],\"name\":\"getCurrentValue\",\"outputs\":[{\"name\":\"\",\"type\":\"bool\"},{\"name\":\"\",\"type\":\"uint256\"},{\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{},\"notice\":\"This contract is the interface between the OpenOracle and onChain prices.\\r Examples of onchain price:\\r ETH/USD - DAI/ETH price on DEXes\\r BTC/USD - WBTC/DAI on DEX\\r Onchain oracles:\\r\\tTellor\\r\\tChainlink\\r\\tZap\\r\\tMaker DAO ETH/USD price\\r\"}},\"settings\":{\"compilationTarget\":{\"/C/company/code/open-oracle/contracts/OpenOracleOnChainInterface.sol\":\"OpenOracleOnChainInterface\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/company/code/open-oracle/contracts/OpenOracleOnChainInterface.sol\":{\"keccak256\":\"0x2bd786556b9a77dfbb534758230547ddf7f9f7a3a1814d84572f4565b5fef8ef\",\"urls\":[\"bzzr://e67868819224c39e615b89a382fb23935ebea0750da39aaba5fc37e8cc0148e2\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.5.0;\r\n\r\n\r\n/*This contract is the interface between the OpenOracle and onChain prices.\r\nExamples of onchain price:\r\n\tETH/USD - DAI/ETH price on DEXes\r\n\tBTC/USD - WBTC/DAI on DEX\r\n\tOnchain oracles:\r\n\t\tTellor\r\n\t\tChainlink\r\n\t\tZap\r\n\t\tMaker DAO ETH/USD price\r\n\r\n*/\r\n\r\n\r\n\r\ninterface OpenOracleOnChainInterface{\r\n\tfunction getCurrentValue(string calldata _symbol) external returns(bool,uint,uint); //_didGet,_value,_timestampRetrieved\r\n}",
+  "source": "pragma solidity ^0.5.0;\r\n\r\n\r\n/**\r\n * @notice This contract is the interface between the OpenOracle and onChain prices.\r\n *  Examples of onchain price:\r\n *\tETH/USD - DAI/ETH price on DEXes\r\n *\tBTC/USD - WBTC/DAI on DEX\r\n *\tOnchain oracles:\r\n *\t\tTellor\r\n *\t\tChainlink\r\n *\t\tZap\r\n *\t\tMaker DAO ETH/USD price\r\n */\r\n\r\ninterface OpenOracleOnChainInterface{\r\n\tfunction getCurrentValue(string calldata _symbol) external returns(bool,uint,uint); //_didGet,_value,_timestampRetrieved\r\n}",
   "sourcePath": "C:\\company\\code\\open-oracle\\contracts\\OpenOracleOnChainInterface.sol",
   "ast": {
     "absolutePath": "/C/company/code/open-oracle/contracts/OpenOracleOnChainInterface.sol",
     "exportedSymbols": {
       "OpenOracleOnChainInterface": [
-        905
+        899
       ]
     },
-    "id": 906,
+    "id": 900,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 893,
+        "id": 887,
         "literals": [
           "solidity",
           "^",
@@ -61,11 +61,11 @@
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "interface",
-        "documentation": null,
+        "documentation": "@notice This contract is the interface between the OpenOracle and onChain prices.\r\n Examples of onchain price:\r\nETH/USD - DAI/ETH price on DEXes\r\nBTC/USD - WBTC/DAI on DEX\r\nOnchain oracles:\r\n\tTellor\r\n\tChainlink\r\n\tZap\r\n\tMaker DAO ETH/USD price\r",
         "fullyImplemented": false,
-        "id": 905,
+        "id": 899,
         "linearizedBaseContracts": [
-          905
+          899
         ],
         "name": "OpenOracleOnChainInterface",
         "nodeType": "ContractDefinition",
@@ -73,23 +73,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 904,
+            "id": 898,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCurrentValue",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 896,
+              "id": 890,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 895,
+                  "id": 889,
                   "name": "_symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 904,
-                  "src": "350:23:5",
+                  "scope": 898,
+                  "src": "377:23:5",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -97,10 +97,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 894,
+                    "id": 888,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "350:6:5",
+                    "src": "377:6:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -110,19 +110,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "349:25:5"
+              "src": "376:25:5"
             },
             "returnParameters": {
-              "id": 903,
+              "id": 897,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 898,
+                  "id": 892,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 904,
-                  "src": "392:4:5",
+                  "scope": 898,
+                  "src": "419:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -130,10 +130,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 897,
+                    "id": 891,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "392:4:5",
+                    "src": "419:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -144,11 +144,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 900,
+                  "id": 894,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 904,
-                  "src": "397:4:5",
+                  "scope": 898,
+                  "src": "424:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -156,10 +156,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 899,
+                    "id": 893,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "397:4:5",
+                    "src": "424:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -170,11 +170,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 902,
+                  "id": 896,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 904,
-                  "src": "402:4:5",
+                  "scope": 898,
+                  "src": "429:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -182,10 +182,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 901,
+                    "id": 895,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "402:4:5",
+                    "src": "429:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -195,33 +195,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "391:16:5"
+              "src": "418:16:5"
             },
-            "scope": 905,
-            "src": "325:83:5",
+            "scope": 899,
+            "src": "352:83:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 906,
-        "src": "285:163:5"
+        "scope": 900,
+        "src": "312:163:5"
       }
     ],
-    "src": "0:448:5"
+    "src": "0:475:5"
   },
   "legacyAST": {
     "absolutePath": "/C/company/code/open-oracle/contracts/OpenOracleOnChainInterface.sol",
     "exportedSymbols": {
       "OpenOracleOnChainInterface": [
-        905
+        899
       ]
     },
-    "id": 906,
+    "id": 900,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 893,
+        "id": 887,
         "literals": [
           "solidity",
           "^",
@@ -235,11 +235,11 @@
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "interface",
-        "documentation": null,
+        "documentation": "@notice This contract is the interface between the OpenOracle and onChain prices.\r\n Examples of onchain price:\r\nETH/USD - DAI/ETH price on DEXes\r\nBTC/USD - WBTC/DAI on DEX\r\nOnchain oracles:\r\n\tTellor\r\n\tChainlink\r\n\tZap\r\n\tMaker DAO ETH/USD price\r",
         "fullyImplemented": false,
-        "id": 905,
+        "id": 899,
         "linearizedBaseContracts": [
-          905
+          899
         ],
         "name": "OpenOracleOnChainInterface",
         "nodeType": "ContractDefinition",
@@ -247,23 +247,23 @@
           {
             "body": null,
             "documentation": null,
-            "id": 904,
+            "id": 898,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getCurrentValue",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 896,
+              "id": 890,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 895,
+                  "id": 889,
                   "name": "_symbol",
                   "nodeType": "VariableDeclaration",
-                  "scope": 904,
-                  "src": "350:23:5",
+                  "scope": 898,
+                  "src": "377:23:5",
                   "stateVariable": false,
                   "storageLocation": "calldata",
                   "typeDescriptions": {
@@ -271,10 +271,10 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 894,
+                    "id": 888,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
-                    "src": "350:6:5",
+                    "src": "377:6:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_string_storage_ptr",
                       "typeString": "string"
@@ -284,19 +284,19 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "349:25:5"
+              "src": "376:25:5"
             },
             "returnParameters": {
-              "id": 903,
+              "id": 897,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 898,
+                  "id": 892,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 904,
-                  "src": "392:4:5",
+                  "scope": 898,
+                  "src": "419:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -304,10 +304,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 897,
+                    "id": 891,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "392:4:5",
+                    "src": "419:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -318,11 +318,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 900,
+                  "id": 894,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 904,
-                  "src": "397:4:5",
+                  "scope": 898,
+                  "src": "424:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -330,10 +330,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 899,
+                    "id": 893,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "397:4:5",
+                    "src": "424:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -344,11 +344,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 902,
+                  "id": 896,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 904,
-                  "src": "402:4:5",
+                  "scope": 898,
+                  "src": "429:4:5",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -356,10 +356,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 901,
+                    "id": 895,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
-                    "src": "402:4:5",
+                    "src": "429:4:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -369,20 +369,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "391:16:5"
+              "src": "418:16:5"
             },
-            "scope": 905,
-            "src": "325:83:5",
+            "scope": 899,
+            "src": "352:83:5",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 906,
-        "src": "285:163:5"
+        "scope": 900,
+        "src": "312:163:5"
       }
     ],
-    "src": "0:448:5"
+    "src": "0:475:5"
   },
   "compiler": {
     "name": "solc",
@@ -390,11 +390,12 @@
   },
   "networks": {},
   "schemaVersion": "3.0.16",
-  "updatedAt": "2019-10-03T20:10:33.201Z",
+  "updatedAt": "2019-10-21T17:52:01.584Z",
   "devdoc": {
     "methods": {}
   },
   "userdoc": {
-    "methods": {}
+    "methods": {},
+    "notice": "This contract is the interface between the OpenOracle and onChain prices.\r Examples of onchain price:\r ETH/USD - DAI/ETH price on DEXes\r BTC/USD - WBTC/DAI on DEX\r Onchain oracles:\r\tTellor\r\tChainlink\r\tZap\r\tMaker DAO ETH/USD price\r"
   }
 }

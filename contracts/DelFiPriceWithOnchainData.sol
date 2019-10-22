@@ -10,20 +10,36 @@ import "./OpenOracleOnChainInterface.sol";
  * @author Compound Labs, Inc.
  */
 contract DelFiPriceWithOnchainData is OpenOracleView {
+
     /**
-     * @notice The event emitted when a price is written to storage
+     * @notice The list(array) of onChainSources contract addresses
      */
-    event Price(string symbol, uint64 price);
     address[] onChainSources;
+
     /**
      * @notice The mapping of medianized prices per symbol
      */
     mapping(string => uint64) public prices;
 
+    /**
+     * @notice The event emitted when a price is written to storage
+     */
+    event Price(string symbol, uint64 price);
+
+    /**
+     * @dev Specify the OpenOraclePriceData address, addresses for approved off-chain and on-chain data providers.
+     * @param data_ is the address for the OpenOraclePriceData contract
+     * @param sources_ is the list of authorized addresses to provide/sign off-chain data
+     * @param onChainSources_ is the list of authorized on-chain souces addresses 
+     */
     constructor(OpenOraclePriceData data_, address[] memory sources_,address[] memory onChainSources_) public OpenOracleView(data_, sources_) {
         onChainSources = onChainSources_;
     }
 
+    /**
+     * @notice Allows users to get median price data
+     * @param _symbol is the price symbol such as 'ETH/USD' etc...
+     */
     function getPrice(string memory _symbol) public returns(uint64){
         return prices[_symbol];
     }
@@ -52,7 +68,6 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
             emit Price(symbol, price);
         }
     }
-
     /**
      * @notice Calculates the median price over any set of sources
      * @param symbol The symbol to calculate the median price of
@@ -74,8 +89,8 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
         uint64[] memory result = new uint64[](onChainSources.length);
         uint tookCount = 0;
         for(uint i=0; i< onChainSources.length; i++){
-            (_didGet,_retrievedValue,_timestampRetrieved) = OpenOracleOnChainInterface(address(onChainSources[i])).getCurrentValue(symbol);    
-            if(_didGet && _timestampRetrieved > now - 1 days){//or a different threshold (or none like Compound)
+            (_didGet,_retrievedValue,_timestampRetrieved) = OpenOracleOnChainInterface(address(onChainSources[i])).getCurrentValue(symbol);   
+            if(_didGet){//or a different threshold ( && _timestampRetrieved > now - 1 days .. or none like Compound)
                 result[tookCount] = uint64(_retrievedValue);
                 tookCount++;
             }         

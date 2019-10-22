@@ -13,7 +13,6 @@ contract OpenOraclePriceData is OpenOracleData {
      * @notice The event emitted when a source writes to its storage
      */
     event Write(address indexed source, string key, uint64 timestamp, uint64 value);
-
     /**
      * @notice The fundamental unit of storage for a reporter source
      */
