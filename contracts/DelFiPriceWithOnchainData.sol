@@ -15,12 +15,12 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
      * @notice The list(array) of onChainSources contract addresses
      */
     address[] onChainSources;
+    uint duration; //how long prices are good for
 
     /**
      * @notice The mapping of medianized prices per symbol
      */
     mapping(string => uint64) public prices;
-
     /**
      * @notice The event emitted when a price is written to storage
      */
@@ -32,7 +32,7 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
      * @param sources_ is the list of authorized addresses to provide/sign off-chain data
      * @param onChainSources_ is the list of authorized on-chain souces addresses 
      */
-    constructor(OpenOraclePriceData data_, address[] memory sources_,address[] memory onChainSources_) public OpenOracleView(data_, sources_) {
+    constructor(OpenOraclePriceData data_, address[] memory sources_,address[] memory onChainSources_, uint _duration) public OpenOracleView(data_, sources_) {
         onChainSources = onChainSources_;
     }
 
@@ -52,20 +52,41 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
      */
     function postPrices(bytes[] calldata messages, bytes[] calldata signatures, string[] calldata symbols) external {
         require(messages.length == signatures.length, "messages and signatures must be 1:1");
-
         // Post the messages, whatever they are
         for (uint i = 0; i < messages.length; i++) {
             OpenOraclePriceData(address(data)).put(messages[i], signatures[i]);
         }
-
-        // Recalculate the asset prices for the symbols to update
+        updateOnChainPrices(symbols);
         for (uint i = 0; i < symbols.length; i++) {
             string memory symbol = symbols[i];
-
-            // Calculate the median price, write to storage, and emit an event
-            uint64 price = medianPrice(symbol, sources);
+            uint64 price = medianPrice(symbol);
             prices[symbol] = price;
             emit Price(symbol, price);
+        }
+    }
+
+    function postOnChainPrices(string[] memory symbols) public {
+            updateOnChainPrices(symbols);
+            uint64 price = medianPrice(symbol);
+            prices[symbol] = price;
+            emit Price(symbol, price);
+    }
+
+    function updateOnChainPrices(string[] memory symbols) internal {
+        for (uint i = 0; i < symbols.length; i++) {
+            string memory symbol = symbols[i];
+            bool _didGet;
+            uint _retrievedValue;
+            uint _timestampRetrieved;
+            for(uint i=0; i< onChainSources.length; i++){
+                (_didGet,_retrievedValue,_timestampRetrieved) = OpenOracleOnChainInterface(address(onChainSources[i])).getCurrentValue(symbol);   
+                if(_didGet){//or a different threshold ( && _timestampRetrieved > now - 1 days .. or none like Compound)
+                    data[onChainSources[i]][symbol] = Datum({
+                        value: _retrievedValue,
+                        timestamp: _timestampRetrieved
+                    });
+                }         
+            }
         }
     }
     /**
@@ -74,38 +95,36 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
      * @param sources_ The sources to use when calculating the median price
      * @return median The median price over the set of sources
      */
-    function medianPrice(string memory symbol, address[] memory sources_) public returns (uint64 median) {
-        require(sources_.length > 0, "sources list must not be empty");
-        uint N = sources_.length;
-        uint64[] memory postedPrices = new uint64[](N);
-        for (uint i = 0; i < N; i++) {
-            postedPrices[i] = OpenOraclePriceData(address(data)).getPrice(sources_[i], symbol);
-            //should you add check that timestamp is within a certain period?
-        }
-
-        bool _didGet;
-        uint _retrievedValue;
-        uint _timestampRetrieved;
-        uint64[] memory result = new uint64[](onChainSources.length);
-        uint tookCount = 0;
-        for(uint i=0; i< onChainSources.length; i++){
-            (_didGet,_retrievedValue,_timestampRetrieved) = OpenOracleOnChainInterface(address(onChainSources[i])).getCurrentValue(symbol);   
-            if(_didGet){//or a different threshold ( && _timestampRetrieved > now - 1 days .. or none like Compound)
-                result[tookCount] = uint64(_retrievedValue);
-                tookCount++;
-            }         
-        }
-        uint64[] memory allPrices = new uint64[](N + tookCount);
-        for (uint i=0; i < (N + tookCount); i++) {
-            if(i<N){
-                allPrices[i] = postedPrices[i];
+    function medianPrice(string memory symbol) public returns (uint64 median) {
+        // Calculate the median price, write to storage, and emit an event
+        //we need to have a timestamp restriction (updated within last X...)
+        uint64[] memory postedPrices = new uint64[](sources.length + onChainSources.length);
+        uint _t;
+        uint _v;
+        uint _updatedSources;
+        for (uint i = 0; i <sources.length + onChainSources.length; i++) {
+            if(i < sources.length){
+                _t,_v = OpenOraclePriceData(address(data)).get(sources[i], symbol);
+                if (_t > now - duration){
+                    postedPrices[_updatedSources] =_v;
+                    _updatedSources++;
+                }
             }
             else{
-                allPrices[i] = result[i-N];
+                p_t,_v = = OpenOraclePriceData(address(data)).get(onChainSources[i], symbol);
+                if (_t > now - duration){
+                    postedPrices[_updatedSources] = _v;
+                    _updatedSources++;
+                }
             }
         }
+        //resize array for sorting
+        uint64[] memory allPrices = new uint64[](_updatedSources);
+        for (uint i=0; i < (_updatedSources); i++) {
+                allPrices[i] = postedPrices[i];
+        }
         uint64[] memory sortedPrices = sort(allPrices);
-        return allPrices[N / 2];
+        return sortedPrices[allPrices.length / 2];
     }
 
     /**
