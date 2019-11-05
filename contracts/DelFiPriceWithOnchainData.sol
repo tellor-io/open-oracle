@@ -12,6 +12,14 @@ import "./OpenOracleOnChainInterface.sol";
 contract DelFiPriceWithOnchainData is OpenOracleView {
 
     /**
+     * @notice The fundamental unit of storage for the on-chain source
+     */
+    struct Datum {
+        uint64 timestamp;
+        uint64 value;
+    }
+    mapping(address => mapping(string => Datum)) private onChainData;
+    /**
      * @notice The list(array) of onChainSources contract addresses
      */
     address[] onChainSources;
@@ -53,12 +61,12 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
     function postPrices(bytes[] calldata messages, bytes[] calldata signatures, string[] calldata symbols) external {
         require(messages.length == signatures.length, "messages and signatures must be 1:1");
         // Post the messages, whatever they are
-        for (uint i = 0; i < messages.length; i++) {
-            OpenOraclePriceData(address(data)).put(messages[i], signatures[i]);
+        for (uint ii = 0; ii < messages.length; ii++) {
+            OpenOraclePriceData(address(data)).put(messages[ii], signatures[ii]);
         }
-        updateOnChainPrices(symbols);
         for (uint i = 0; i < symbols.length; i++) {
             string memory symbol = symbols[i];
+            updateOnChainPrice(symbol);
             uint64 price = medianPrice(symbol);
             prices[symbol] = price;
             emit Price(symbol, price);
@@ -66,52 +74,51 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
     }
 
     function postOnChainPrices(string[] memory symbols) public {
-            updateOnChainPrices(symbols);
-            uint64 price = medianPrice(symbol);
-            prices[symbol] = price;
-            emit Price(symbol, price);
+            for (uint i = 0; i < symbols.length; i++) {
+                string memory symbol = symbols[i];
+                updateOnChainPrice(symbol);
+                uint64 price = medianPrice(symbol);
+                prices[symbol] = price;
+                emit Price(symbol, price);
+            }
     }
 
-    function updateOnChainPrices(string[] memory symbols) internal {
-        for (uint i = 0; i < symbols.length; i++) {
-            string memory symbol = symbols[i];
+    function updateOnChainPrice(string memory symbol) internal {
             bool _didGet;
             uint _retrievedValue;
             uint _timestampRetrieved;
-            for(uint i=0; i< onChainSources.length; i++){
-                (_didGet,_retrievedValue,_timestampRetrieved) = OpenOracleOnChainInterface(address(onChainSources[i])).getCurrentValue(symbol);   
+            for(uint j=0; j< onChainSources.length; j++){
+                (_didGet,_retrievedValue,_timestampRetrieved) = OpenOracleOnChainInterface(address(onChainSources[j])).getCurrentValue(symbol);   
                 if(_didGet){//or a different threshold ( && _timestampRetrieved > now - 1 days .. or none like Compound)
-                    data[onChainSources[i]][symbol] = Datum({
-                        value: _retrievedValue,
-                        timestamp: _timestampRetrieved
+                    onChainData[onChainSources[j]][symbol] = Datum({
+                        value: uint64(_retrievedValue),
+                        timestamp: uint64(_timestampRetrieved)
                     });
                 }         
             }
-        }
     }
     /**
      * @notice Calculates the median price over any set of sources
      * @param symbol The symbol to calculate the median price of
-     * @param sources_ The sources to use when calculating the median price
      * @return median The median price over the set of sources
      */
     function medianPrice(string memory symbol) public returns (uint64 median) {
         // Calculate the median price, write to storage, and emit an event
         //we need to have a timestamp restriction (updated within last X...)
         uint64[] memory postedPrices = new uint64[](sources.length + onChainSources.length);
-        uint _t;
-        uint _v;
+        uint64 _t;
+        uint64 _v;
         uint _updatedSources;
-        for (uint i = 0; i <sources.length + onChainSources.length; i++) {
+        for (uint i = 0; i <sources.length + onChainSources.length; i++){
             if(i < sources.length){
-                _t,_v = OpenOraclePriceData(address(data)).get(sources[i], symbol);
+                (_t,_v) = OpenOraclePriceData(address(data)).get(sources[i], symbol);
                 if (_t > now - duration){
                     postedPrices[_updatedSources] =_v;
                     _updatedSources++;
                 }
             }
             else{
-                p_t,_v = = OpenOraclePriceData(address(data)).get(onChainSources[i], symbol);
+                (_t,_v) = getOnChain(onChainSources[i], symbol);
                 if (_t > now - duration){
                     postedPrices[_updatedSources] = _v;
                     _updatedSources++;
@@ -144,5 +151,26 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
             }
         }
         return array;
+    }
+
+    /**
+     * @notice Read a single key from an authenticated source
+     * @param source The verifiable author of the data
+     * @param key The selector for the value to return
+     * @return The claimed Unix timestamp for the data and the price value (defaults to (0, 0))
+     */
+    function getOnChain(address source, string memory key) public view returns (uint64, uint64) {
+        Datum storage datum = onChainData[source][key];
+        return (datum.timestamp, datum.value);
+    }
+
+    /**
+     * @notice Read only the value for a single key from an authenticated source
+     * @param source The verifiable author of the data
+     * @param key The selector for the value to return
+     * @return The price value (defaults to 0)
+     */
+    function getOnChainPrice(address source, string calldata key) external view returns (uint64) {
+        return onChainData[source][key].value;
     }
 }
