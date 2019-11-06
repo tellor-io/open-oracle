@@ -65,8 +65,8 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
         for (uint ii = 0; ii < messages.length; ii++) {
             OpenOraclePriceData(address(data)).put(messages[ii], signatures[ii]);
         }
-        for (uint i = 0; i < symbols.length; i++) {
-            string memory symbol = symbols[i];
+        for (uint k = 0; k < symbols.length; k++) {
+            string memory symbol = symbols[k];
             updateOnChainPrice(symbol);
             uint64 price = medianPrice(symbol);
             prices[symbol] = price;
@@ -105,38 +105,48 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
      * @param symbol The symbol to calculate the median price of
      * @return median The median price over the set of sources
      */
-    function medianPrice(string memory symbol) public view returns (uint64 median) {
+    function medianPrice(string memory symbol) public returns (uint64 median) {
         // Calculate the median price, write to storage, and emit an event
         //we need to have a timestamp restriction (updated within last X...)
         uint64[] memory postedPrices = new uint64[](sources.length + onChainSources.length);
         uint64 _t;
         uint64 _v;
         uint _updatedSources;
+        emit Print("source len",sources.length+onChainSources.length);
         for (uint i = 0; i <sources.length + onChainSources.length; i++){
             if(i < sources.length){
                 (_t,_v) = OpenOraclePriceData(address(data)).get(sources[i], symbol);
+                emit Print("Now",now);
+                emit Print("Time",_t);
                 if (_t > now - duration){
                     postedPrices[_updatedSources] =_v;
                     _updatedSources++;
                 }
             }
             else{
-                /*(_t,_v) = getOnChain(onChainSources[i-sources.length], symbol);
+                (_t,_v) = getOnChain(onChainSources[i-sources.length], symbol);
                 if (_t > now - duration){
                     postedPrices[_updatedSources] = _v;
                     _updatedSources++;
-                }*/
+                }
             }
         }
+        emit Print("updatedSources",_updatedSources);
         //resize array for sorting
         uint64[] memory allPrices = new uint64[](_updatedSources);
         for (uint i=0; i < (_updatedSources); i++) {
                 allPrices[i] = postedPrices[i];
         }
         uint64[] memory sortedPrices = sort(allPrices);
-        //what do we return if all things are old?  0 or the previous price?
-        return sortedPrices[allPrices.length / 2];
-        return 10;
+        if(_updatedSources>1){
+            return sortedPrices[_updatedSources / 2];
+        }
+        else if(_updatedSources == 1){
+            return sortedPrices[0];
+        }
+        else{
+            return 0;
+        }
     }
 
     /**
