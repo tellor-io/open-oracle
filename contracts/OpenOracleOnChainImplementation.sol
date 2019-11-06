@@ -33,7 +33,7 @@ contract OpenOracleOnChainImplementation{
 	 * @returns _didGet as true if it was successful at retreiving current value,
 	 * _value retreived, and _timestampRetrieved
 	 */
-	function getCurrentValue(string memory _symbol) public returns(bool _didGet,uint64 _value,uint64 _time){
+	function getCurrentValue(string memory _symbol) public view returns(bool _didGet,uint64 _value,uint64 _time){
 		(_value,_time) = getValue(_symbol,currentTime[_symbol]);
 		if(_time > 0){
 			_didGet = true;

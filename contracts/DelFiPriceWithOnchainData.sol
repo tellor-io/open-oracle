@@ -42,13 +42,14 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
      */
     constructor(OpenOraclePriceData data_, address[] memory sources_,address[] memory onChainSources_, uint _duration) public OpenOracleView(data_, sources_) {
         onChainSources = onChainSources_;
+        duration = _duration;
     }
 
     /**
      * @notice Allows users to get median price data
      * @param _symbol is the price symbol such as 'ETH/USD' etc...
      */
-    function getPrice(string memory _symbol) public returns(uint64){
+    function getPrice(string memory _symbol) public view returns(uint64){
         return prices[_symbol];
     }
 
@@ -83,6 +84,7 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
             }
     }
 
+    event Print(string _s, uint _v);
     function updateOnChainPrice(string memory symbol) internal {
             bool _didGet;
             uint _retrievedValue;
@@ -94,6 +96,7 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
                         value: uint64(_retrievedValue),
                         timestamp: uint64(_timestampRetrieved)
                     });
+                emit Print("updated Onchain",_retrievedValue);
                 }         
             }
     }
@@ -102,7 +105,7 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
      * @param symbol The symbol to calculate the median price of
      * @return median The median price over the set of sources
      */
-    function medianPrice(string memory symbol) public returns (uint64 median) {
+    function medianPrice(string memory symbol) public view returns (uint64 median) {
         // Calculate the median price, write to storage, and emit an event
         //we need to have a timestamp restriction (updated within last X...)
         uint64[] memory postedPrices = new uint64[](sources.length + onChainSources.length);
@@ -118,11 +121,11 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
                 }
             }
             else{
-                (_t,_v) = getOnChain(onChainSources[i], symbol);
+                /*(_t,_v) = getOnChain(onChainSources[i-sources.length], symbol);
                 if (_t > now - duration){
                     postedPrices[_updatedSources] = _v;
                     _updatedSources++;
-                }
+                }*/
             }
         }
         //resize array for sorting
@@ -133,6 +136,7 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
         uint64[] memory sortedPrices = sort(allPrices);
         //what do we return if all things are old?  0 or the previous price?
         return sortedPrices[allPrices.length / 2];
+        return 10;
     }
 
     /**
