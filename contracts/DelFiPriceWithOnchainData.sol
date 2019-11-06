@@ -35,10 +35,12 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
     event Price(string symbol, uint64 price);
 
     /**
-     * @dev Specify the OpenOraclePriceData address, addresses for approved off-chain and on-chain data providers.
+     * @notice Specify the OpenOraclePriceData address, addresses for approved off-chain and on-chain data providers.
      * @param data_ is the address for the OpenOraclePriceData contract
      * @param sources_ is the list of authorized addresses to provide/sign off-chain data
      * @param onChainSources_ is the list of authorized on-chain souces addresses 
+     * @param _duration is the timeframe a value is considered a good value. Basically sets an expiration date
+     * for a value to be "good for use" from when a value is added to when is used. 
      */
     constructor(OpenOraclePriceData data_, address[] memory sources_,address[] memory onChainSources_, uint _duration) public OpenOracleView(data_, sources_) {
         onChainSources = onChainSources_;
@@ -47,7 +49,7 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
 
     /**
      * @notice Allows users to get median price data
-     * @param _symbol is the price symbol such as 'ETH/USD' etc...
+     * @param _symbol The symbol/identifier for data such as "ETH/USD"
      */
     function getPrice(string memory _symbol) public view returns(uint64){
         return prices[_symbol];
@@ -58,6 +60,7 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
      * @dev We let anyone pay to post anything, but only sources count for prices.
      * @param messages The messages to post to the oracle
      * @param signatures The signatures for the corresponding messages
+     * @param symbols The symbol/identifier for data such as "ETH/USD"
      */
     function postPrices(bytes[] calldata messages, bytes[] calldata signatures, string[] calldata symbols) external {
         require(messages.length == signatures.length, "messages and signatures must be 1:1");
@@ -74,6 +77,10 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
         }
     }
 
+    /**
+     * @notice Saves median of on-chain and off-chain oracle data for the specified symbols
+     * @param symbols The symbols/identifiers for data such as "ETH/USD"
+     */
     function postOnChainPrices(string[] memory symbols) public {
             for (uint i = 0; i < symbols.length; i++) {
                 string memory symbol = symbols[i];
@@ -84,7 +91,10 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
             }
     }
 
-    event Print(string _s, uint _v);
+    /**
+     * notice Gets off-chain oracle data for the specified symbol
+     * @param symbol The symbol/identifier for data such as "ETH/USD"
+    */
     function updateOnChainPrice(string memory symbol) internal {
             bool _didGet;
             uint _retrievedValue;
@@ -96,10 +106,10 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
                         value: uint64(_retrievedValue),
                         timestamp: uint64(_timestampRetrieved)
                     });
-                emit Print("updated Onchain",_retrievedValue);
                 }         
             }
     }
+    
     /**
      * @notice Calculates the median price over any set of sources
      * @param symbol The symbol to calculate the median price of
@@ -112,12 +122,9 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
         uint64 _t;
         uint64 _v;
         uint _updatedSources;
-        emit Print("source len",sources.length+onChainSources.length);
         for (uint i = 0; i <sources.length + onChainSources.length; i++){
             if(i < sources.length){
                 (_t,_v) = OpenOraclePriceData(address(data)).get(sources[i], symbol);
-                emit Print("Now",now);
-                emit Print("Time",_t);
                 if (_t > now - duration){
                     postedPrices[_updatedSources] =_v;
                     _updatedSources++;
@@ -131,7 +138,6 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
                 }
             }
         }
-        emit Print("updatedSources",_updatedSources);
         //resize array for sorting
         uint64[] memory allPrices = new uint64[](_updatedSources);
         for (uint i=0; i < (_updatedSources); i++) {

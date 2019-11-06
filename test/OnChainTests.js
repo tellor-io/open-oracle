@@ -61,19 +61,19 @@ contract('Open Oracle Tests', function(accounts) {
       onChainData = await OpenOracleOnChainImplementation.new();
       onChainData2 = await OpenOracleOnChainImplementation.new();//Deployed two to test two "different" sources
       openOraclePriceData = await OpenOraclePriceData.new();
-      delfiPrice = await DelfiPrice.new(openOraclePriceData.address,sources.map(a => a.address));
+      //delfiPrice = await DelfiPrice.new(openOraclePriceData.address,sources.map(a => a.address));
       delfiPriceOnChain = await DelFiPriceWithOnchainData.new(openOraclePriceData.address,sources.map(a => a.address),[onChainData.address,onChainData2.address],86400);
       testContract = await TestContract.new(testSymbol);
     });
 
     it("System Launched", async function(){
-        await testContract.setViewContract(delfiPriceOnChain.address, delfiPrice.address)
+        await testContract.setViewContract(delfiPriceOnChain.address)
         assert.equal(await testContract.viewAddress.call(),delfiPriceOnChain.address,"the onchain address should be correctly set in the Test Contract");
-        assert.equal(await testContract.origAddress.call(),delfiPrice.address,"the offchain address should be correctly set in the Test Contract");
+        //assert.equal(await testContract.origAddress.call(),delfiPrice.address,"the offchain address should be correctly set in the Test Contract");
     });
 
     it("Initiate a test contract", async function(){
-        await testContract.setViewContract(delfiPriceOnChain.address, delfiPrice.address)
+        await testContract.setViewContract(delfiPriceOnChain.address)
         assert.equal(await testContract.viewAddress.call(),delfiPriceOnChain.address,"the onchain address should be correctly set in the Test Contract");
        // console.log("setViewContract");
         sdate = Date.now()/1000- (Date.now()/1000)%86400;       
@@ -87,7 +87,7 @@ contract('Open Oracle Tests', function(accounts) {
     });
 
     it("Start and Settle Contract with OnChain prices", async function(){
-        await testContract.setViewContract(delfiPriceOnChain.address, delfiPrice.address)
+        await testContract.setViewContract(delfiPriceOnChain.address)
         assert.equal(await testContract.viewAddress.call(),delfiPriceOnChain.address,"the onchain address should be correctly set in the Test Contract");
         //Set Value on chain for today
         sdate = now;//start date to initiate derivatives contract       
