@@ -1,21 +1,9 @@
 /*Tellor Open Oracle Tests*/
 
-
 /*
 Todo:
-
-Tests:
-Launch Compound Open Oracle System
-Launch Compound OpenOracle System w/onchain prices
-Test Derivatives contract refering to Compound Oracle System
-Test Derivatives Contract referring to C.O.S w/ Onchain data
-
 Add comments to everything
-Restructure pushPrices from onChain?
-Remove all unnecessary files in repo 
-Clean package.json
-Update Readme
-
+Add back into Compound structure w/Tests
 */
 
 /** 
@@ -33,11 +21,6 @@ const OpenOracleData = artifacts.require("./OpenOraclePriceData.sol")
 const OpenOracleOnChainImplementation = artifacts.require("./OpenOracleOnChainImplementation.sol"); 
 const OpenOracleOnChainInterface = artifacts.require("./OpenOracleOnChainInterface.sol");
 
-// const {
-//   encode,
-//   sign,
-// } = require('../sdk/javascript/src/reporter.ts');
-
 const sources = [
   '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf10',
   '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf11',
@@ -45,10 +28,6 @@ const sources = [
   '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf13',
   '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf14',
   '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf20',
-  '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf21',
-  '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf22',
-  '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf23',
-  '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf24',
 ].slice(0, 5).map(web3.eth.accounts.privateKeyToAccount);
 
 const nonSources = [
@@ -57,42 +36,8 @@ const nonSources = [
   '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf17',
   '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf18',
   '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf19',
-  '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf25',
-  '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf26',
-  '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf27',
-  '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf28',
-  '0x177ee777e72b8c042e05ef41d1db0f17f1fcb0e8150b37cfad6993e4373bdf29',
 ].slice(0, 5).map(web3.eth.accounts.privateKeyToAccount);
 
-/* async function postPricesWithOnchain(timestamp, priceses, symbols, signers = sources) {
-    const messages = [], signatures = [];
-    priceses.forEach((prices, i) => {
-      const signed = helper.sign(helper.encode('prices', timestamp, prices.map(([symbol, price]) => [symbol, price])), signers[i].privateKey);
-      for (let {message, signature, signatory} of signed) {
-        expect(signatory).equal(signers[i].address);
-        messages.push(message);
-        signatures.push(signature);
-      }
-    });
-    return (messages, signatures, symbols);
-  }*/
-
- // async function postPricesWithOnchain(timestamp, priceses, symbols, signers = sources) {
- //  i = 0;
- //    const messages = [], signatures = [];
- //     priceses.forEach((prices, i) => { for (let {message, signature, signatory} of signed) {
-
- //      const signed = helper.sign(helper.encode('prices', timestamp, prices.map(([symbol, price]) => [symbol, price])), signers[i].privateKey);
- //      for (let {message, signature, signatory} of signed) {
- //        console.log(i);
- //        i++
- //        expect(signatory).equal(signers[0].address);
- //        messages.push(message);
- //        signatures.push(signature);
- //      }
- //    });
- //    return [messages, signatures, symbols];
- //  }
   async function postPricesWithOnchain(timestamp, priceses, symbols, signers = sources) {
     const messages = [], signatures = [];
     priceses.forEach((prices, i) => {
@@ -121,7 +66,7 @@ contract('Open Oracle Tests', function(accounts) {
       onChainData2 = await OpenOracleOnChainImplementation.new();//Deployed two to test two "different" sources
       openOraclePriceData = await OpenOraclePriceData.new();
       delfiPrice = await DelfiPrice.new(openOraclePriceData.address,sources.map(a => a.address));
-      delfiPriceOnChain = await DelFiPriceWithOnchainData.new(openOraclePriceData.address,sources.map(a => a.address),[onChainData.address,onChainData2.address]);
+      delfiPriceOnChain = await DelFiPriceWithOnchainData.new(openOraclePriceData.address,sources.map(a => a.address),[onChainData.address,onChainData2.address],86400);
       testContract = await TestContract.new(testSymbol);
     });
 
@@ -193,18 +138,79 @@ contract('Open Oracle Tests', function(accounts) {
         // console.log("contract settled");
         assert(evalue-svalue > 0, "endValue should be greater than start value")
         assert.equal(await testContract.contractEnded.call(), true, "True if contract was settled");
+    });
+        it("Post Prices 2 off chain, 3 on chain, check median in between", async function(){   
+          sdate = Date.now()/1000
+        await onChainData.setValue(testSymbol, sdate, 290); //setValue for onChain oracle for start date
+        let svalue = await onChainData.getValue(testSymbol, sdate)//view value
+        await onChainData.updateOnChainPrice(testSymbol);
+        var forpostPrices = await postPricesWithOnchain(sdate, [
+          [['ETH/USD', 290]],
+          [['ETH/USD', 291]],
+          [['ETH/USD', 292]],
+          [['ETH/USD', 293]],
+          [['ETH/USD', 294]]
+          ], ['ETH/USD']);
+        await delfiPriceOnChain.postPrices(forpostPrices[0], forpostPrices[1], forpostPrices[2])
+        assert.equal(await delfiPriceOnChain.getPrice('ETH/USD'),291, "Median 1 should be correct");
+        await onChainData.setValue(testSymbol, sdate, 297); //setValue for onChain oracle for start date
+                await onChainData.updateOnChainPrice(testSymbol);
+        await delfiPriceOnChain.postOnChainPrices(['ETH/USD'])
+        assert.equal(await delfiPriceOnChain.getOnChainPrice(onChainData.address'ETH/USD'),297, "Onchain get should work");
+        var data = await delfiPriceOnChain.getOnChainPrice(onChainData.address'ETH/USD');
+        assert(data[0] > 0, "Onchain get timestamp should work");
+        assert(data[1] > 0, "Onchain get value should work");
+        assert.equal(await delfiPriceOnChain.getPrice('ETH/USD'),292, "Median 2 should be correct");
+        onChainData2.setValue(testSymbol,sdate,200);
+                await onChainData.updateOnChainPrice(testSymbol);
+        assert.equal(await delfiPriceOnChain.getPrice('ETH/USD'),291, "Median 3 should be correct");
+        await onChainData.setValue(testSymbol, sdate, 0);
+        var forpostPrices = await postPricesWithOnchain(sdate + (86400*3), [
+          [['ETH/USD', 1290]],
+          [['ETH/USD', 1291]],
+          [['ETH/USD', 1292]],
+          [['ETH/USD', 1293]],
+          [['ETH/USD', 1294]]
+          ], ['ETH/USD']);
+
+        await delfiPriceOnChain.postPrices(forpostPrices[0], forpostPrices[1], forpostPrices[2])
+        assert.equal(await delfiPriceOnChain.getPrice('ETH/USD'),1291, "Median 4 should be correct");
+    });
+      it("Checking duration enforcing", async function(){   
+        assert.equal(await delfiPriceOnChain.duration.call(), 86400, "Duration should be correct"); 
+         sdate = Date.now()/1000
+        await onChainData.setValue(testSymbol, sdate, 290); //setValue for onChain oracle for start date
+
+        let svalue = await onChainData.getValue(testSymbol, sdate)//view value
+        var forpostPrices = await postPricesWithOnchain(sdate, [
+          [['ETH/USD', 290]],
+          [['ETH/USD', 291]],
+          [['ETH/USD', 292]],
+          [['ETH/USD', 293]],
+          [['ETH/USD', 294]]
+          ], ['ETH/USD']);
+        await delfiPriceOnChain.postPrices(forpostPrices[0], forpostPrices[1], forpostPrices[2])
+        assert.equal(await delfiPriceOnChain.getPrice('ETH/USD'),await delfiPriceOnChain.medianPrice('ETH/USD'), "Median price works"); 
+        assert.equal(await delfiPriceOnChain.getPrice('ETH/USD'),291, "Median 1 should be correct");
+        await helper.advanceTime(86400 * 3);
+        await onChainData.setValue(testSymbol, sdate, 280); //setValue for onChain oracle for start date
+        await onChainData2.setValue(testSymbol, sdate, 270); //setValue for onChain oracle for start date
+                await onChainData.updateOnChainPrice(testSymbol);
+        assert.equal(await delfiPriceOnChain.getPrice('ETH/USD'),270,  "Median should only have current prices be correct"); 
+                await helper.advanceTime(86400 * 3);
+        var forpostPrices = await postPricesWithOnchain(sdate, [
+          [['ETH/USD', 1290]],
+          [['ETH/USD', 1291]],
+          [['ETH/USD', 1292]],
+          [['ETH/USD', 1293]],
+          [['ETH/USD', 1294]]
+          ], ['ETH/USD']);
+        assert.equal(await delfiPriceOnChain.getPrice('ETH/USD'),await delfiPriceOnChain.medianPrice('ETH/USD'), "Median price differs"); 
+                await onChainData.updateOnChainPrice(testSymbol);
+        assert.equal(await delfiPriceOnChain.getPrice('ETH/USD'),1292, "Median should only have current prices 2"); 
+
+
 
     });
-
-/*Launch Compound Open Oracle System
-Launch Compound OpenOracle System w/onchain prices
-Test Derivatives contract refering to Compound Oracle System
-Test Derivatives Contract referring to C.O.S w/ Onchain data
-
-Add comments to everything
-Restructure pushPrices from onChain?
-Remove all unnecessary files in repo 
-Clean package.json
-Update Readme*/
 
 });    

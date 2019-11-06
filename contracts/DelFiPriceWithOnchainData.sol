@@ -23,7 +23,7 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
      * @notice The list(array) of onChainSources contract addresses
      */
     address[] onChainSources;
-    uint duration; //how long prices are good for
+    uint public duration; //how long prices are good for
 
     /**
      * @notice The mapping of medianized prices per symbol
@@ -131,6 +131,7 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
                 allPrices[i] = postedPrices[i];
         }
         uint64[] memory sortedPrices = sort(allPrices);
+        //what do we return if all things are old?  0 or the previous price?
         return sortedPrices[allPrices.length / 2];
     }
 
