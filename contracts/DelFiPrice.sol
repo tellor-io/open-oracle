@@ -19,6 +19,11 @@ contract DelFiPrice is OpenOracleView {
      */
     mapping(string => uint64) public prices;
 
+    /**
+     * @notice Specify the OpenOraclePriceData address, addresses for approved off-chain and on-chain data providers.
+     * @param data_ is the address for the OpenOraclePriceData contract
+     * @param sources_ is the list of authorized addresses to provide/sign off-chain data
+     */
     constructor(OpenOraclePriceData data_, address[] memory sources_) public OpenOracleView(data_, sources_) {}
 
     /**
@@ -26,6 +31,7 @@ contract DelFiPrice is OpenOracleView {
      * @dev We let anyone pay to post anything, but only sources count for prices.
      * @param messages The messages to post to the oracle
      * @param signatures The signatures for the corresponding messages
+     * @param symbols The symbols/identifiers for data such as "ETH/USD"
      */
     function postPrices(bytes[] calldata messages, bytes[] calldata signatures, string[] calldata symbols) external {
         require(messages.length == signatures.length, "messages and signatures must be 1:1");

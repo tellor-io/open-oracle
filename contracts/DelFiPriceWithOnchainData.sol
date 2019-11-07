@@ -12,35 +12,46 @@ import "./OpenOracleOnChainInterface.sol";
 contract DelFiPriceWithOnchainData is OpenOracleView {
 
     /**
+     * @notice The fundamental unit of storage for the on-chain source
+     */
+    struct Datum {
+        uint64 timestamp;
+        uint64 value;
+    }
+    mapping(address => mapping(string => Datum)) private onChainData;
+    /**
      * @notice The list(array) of onChainSources contract addresses
      */
     address[] onChainSources;
+    uint public duration; //how long prices are good for
 
     /**
      * @notice The mapping of medianized prices per symbol
      */
     mapping(string => uint64) public prices;
-
     /**
      * @notice The event emitted when a price is written to storage
      */
     event Price(string symbol, uint64 price);
 
     /**
-     * @dev Specify the OpenOraclePriceData address, addresses for approved off-chain and on-chain data providers.
+     * @notice Specify the OpenOraclePriceData address, addresses for approved off-chain and on-chain data providers.
      * @param data_ is the address for the OpenOraclePriceData contract
      * @param sources_ is the list of authorized addresses to provide/sign off-chain data
      * @param onChainSources_ is the list of authorized on-chain souces addresses 
+     * @param _duration is the timeframe a value is considered a good value. Basically sets an expiration date
+     * for a value to be "good for use" from when a value is added to when is used. 
      */
-    constructor(OpenOraclePriceData data_, address[] memory sources_,address[] memory onChainSources_) public OpenOracleView(data_, sources_) {
+    constructor(OpenOraclePriceData data_, address[] memory sources_,address[] memory onChainSources_, uint _duration) public OpenOracleView(data_, sources_) {
         onChainSources = onChainSources_;
+        duration = _duration;
     }
 
     /**
      * @notice Allows users to get median price data
-     * @param _symbol is the price symbol such as 'ETH/USD' etc...
+     * @param _symbol The symbol/identifier for data such as "ETH/USD"
      */
-    function getPrice(string memory _symbol) public returns(uint64){
+    function getPrice(string memory _symbol) public view returns(uint64){
         return prices[_symbol];
     }
 
@@ -49,63 +60,99 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
      * @dev We let anyone pay to post anything, but only sources count for prices.
      * @param messages The messages to post to the oracle
      * @param signatures The signatures for the corresponding messages
+     * @param symbols The symbol/identifier for data such as "ETH/USD"
      */
     function postPrices(bytes[] calldata messages, bytes[] calldata signatures, string[] calldata symbols) external {
         require(messages.length == signatures.length, "messages and signatures must be 1:1");
-
         // Post the messages, whatever they are
-        for (uint i = 0; i < messages.length; i++) {
-            OpenOraclePriceData(address(data)).put(messages[i], signatures[i]);
+        for (uint ii = 0; ii < messages.length; ii++) {
+            OpenOraclePriceData(address(data)).put(messages[ii], signatures[ii]);
         }
-
-        // Recalculate the asset prices for the symbols to update
-        for (uint i = 0; i < symbols.length; i++) {
-            string memory symbol = symbols[i];
-
-            // Calculate the median price, write to storage, and emit an event
-            uint64 price = medianPrice(symbol, sources);
+        for (uint k = 0; k < symbols.length; k++) {
+            string memory symbol = symbols[k];
+            updateOnChainPrice(symbol);
+            uint64 price = medianPrice(symbol);
             prices[symbol] = price;
             emit Price(symbol, price);
         }
     }
+
+    /**
+     * @notice Saves median of on-chain and off-chain oracle data for the specified symbols
+     * @param symbols The symbols/identifiers for data such as "ETH/USD"
+     */
+    function postOnChainPrices(string[] memory symbols) public {
+            for (uint i = 0; i < symbols.length; i++) {
+                string memory symbol = symbols[i];
+                updateOnChainPrice(symbol);
+                uint64 price = medianPrice(symbol);
+                prices[symbol] = price;
+                emit Price(symbol, price);
+            }
+    }
+
+    /**
+     * notice Gets off-chain oracle data for the specified symbol
+     * @param symbol The symbol/identifier for data such as "ETH/USD"
+    */
+    function updateOnChainPrice(string memory symbol) internal {
+            bool _didGet;
+            uint _retrievedValue;
+            uint _timestampRetrieved;
+            for(uint j=0; j< onChainSources.length; j++){
+                (_didGet,_retrievedValue,_timestampRetrieved) = OpenOracleOnChainInterface(address(onChainSources[j])).getCurrentValue(symbol);   
+                if(_didGet){//or a different threshold ( && _timestampRetrieved > now - 1 days .. or none like Compound)
+                    onChainData[onChainSources[j]][symbol] = Datum({
+                        value: uint64(_retrievedValue),
+                        timestamp: uint64(_timestampRetrieved)
+                    });
+                }         
+            }
+    }
+    
     /**
      * @notice Calculates the median price over any set of sources
      * @param symbol The symbol to calculate the median price of
-     * @param sources_ The sources to use when calculating the median price
      * @return median The median price over the set of sources
      */
-    function medianPrice(string memory symbol, address[] memory sources_) public returns (uint64 median) {
-        require(sources_.length > 0, "sources list must not be empty");
-        uint N = sources_.length;
-        uint64[] memory postedPrices = new uint64[](N);
-        for (uint i = 0; i < N; i++) {
-            postedPrices[i] = OpenOraclePriceData(address(data)).getPrice(sources_[i], symbol);
-            //should you add check that timestamp is within a certain period?
-        }
-
-        bool _didGet;
-        uint _retrievedValue;
-        uint _timestampRetrieved;
-        uint64[] memory result = new uint64[](onChainSources.length);
-        uint tookCount = 0;
-        for(uint i=0; i< onChainSources.length; i++){
-            (_didGet,_retrievedValue,_timestampRetrieved) = OpenOracleOnChainInterface(address(onChainSources[i])).getCurrentValue(symbol);   
-            if(_didGet){//or a different threshold ( && _timestampRetrieved > now - 1 days .. or none like Compound)
-                result[tookCount] = uint64(_retrievedValue);
-                tookCount++;
-            }         
-        }
-        uint64[] memory allPrices = new uint64[](N + tookCount);
-        for (uint i=0; i < (N + tookCount); i++) {
-            if(i<N){
-                allPrices[i] = postedPrices[i];
+    function medianPrice(string memory symbol) public returns (uint64 median) {
+        // Calculate the median price, write to storage, and emit an event
+        //we need to have a timestamp restriction (updated within last X...)
+        uint64[] memory postedPrices = new uint64[](sources.length + onChainSources.length);
+        uint64 _t;
+        uint64 _v;
+        uint _updatedSources;
+        for (uint i = 0; i <sources.length + onChainSources.length; i++){
+            if(i < sources.length){
+                (_t,_v) = OpenOraclePriceData(address(data)).get(sources[i], symbol);
+                if (_t > now - duration){
+                    postedPrices[_updatedSources] =_v;
+                    _updatedSources++;
+                }
             }
             else{
-                allPrices[i] = result[i-N];
+                (_t,_v) = getOnChain(onChainSources[i-sources.length], symbol);
+                if (_t > now - duration){
+                    postedPrices[_updatedSources] = _v;
+                    _updatedSources++;
+                }
             }
         }
+        //resize array for sorting
+        uint64[] memory allPrices = new uint64[](_updatedSources);
+        for (uint i=0; i < (_updatedSources); i++) {
+                allPrices[i] = postedPrices[i];
+        }
         uint64[] memory sortedPrices = sort(allPrices);
-        return allPrices[N / 2];
+        if(_updatedSources>1){
+            return sortedPrices[_updatedSources / 2];
+        }
+        else if(_updatedSources == 1){
+            return sortedPrices[0];
+        }
+        else{
+            return 0;
+        }
     }
 
     /**
@@ -125,5 +172,26 @@ contract DelFiPriceWithOnchainData is OpenOracleView {
             }
         }
         return array;
+    }
+
+    /**
+     * @notice Read a single key from an authenticated source
+     * @param source The verifiable author of the data
+     * @param key The selector for the value to return
+     * @return The claimed Unix timestamp for the data and the price value (defaults to (0, 0))
+     */
+    function getOnChain(address source, string memory key) public view returns (uint64, uint64) {
+        Datum storage datum = onChainData[source][key];
+        return (datum.timestamp, datum.value);
+    }
+
+    /**
+     * @notice Read only the value for a single key from an authenticated source
+     * @param source The verifiable author of the data
+     * @param key The selector for the value to return
+     * @return The price value (defaults to 0)
+     */
+    function getOnChainPrice(address source, string calldata key) external view returns (uint64) {
+        return onChainData[source][key].value;
     }
 }
